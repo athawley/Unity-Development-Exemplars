@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class DefaultPlayerMovementCC : MonoBehaviour
 {
+    public float rotate;
     public Vector2 movement;
     private CharacterController cc;
     public float playerSpeed = 5;
@@ -25,5 +26,11 @@ public class DefaultPlayerMovementCC : MonoBehaviour
 
     void OnMove(InputValue iv) {
         movement = iv.Get<Vector2>();
+    }
+
+    void OnLook(InputValue iv) {
+        rotate = iv.Get<Vector2>().x;
+
+        Debug.Log(rotate);
     }
 }

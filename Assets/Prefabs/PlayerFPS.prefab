@@ -313,9 +313,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4463733940950320346}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0.25}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.4}
   m_LocalScale: {x: 0.75, y: 0.25, z: 0.5}
-  m_Children: []
+  m_Children:
+  - {fileID: 5438026034800647034}
   m_Father: {fileID: 856046593545374130}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -406,13 +407,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4762925140436266909}
-  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 2.4, z: -4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.19999999}
+  m_LocalScale: {x: 1.3333334, y: 4, z: 2}
   m_Children: []
-  m_Father: {fileID: 856046593545374130}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+  m_Father: {fileID: 2785794872126079546}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7743403103582934316
 Camera:
   m_ObjectHideFlags: 0
@@ -475,9 +476,9 @@ GameObject:
   - component: {fileID: 856046593545374130}
   - component: {fileID: 67970508984265423}
   - component: {fileID: 6788432744787973111}
-  - component: {fileID: 6949803874820909019}
+  - component: {fileID: 5163078172303463541}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerFPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,7 +499,6 @@ Transform:
   - {fileID: 2785794872126079546}
   - {fileID: 3049602339310875726}
   - {fileID: 2814211867457584446}
-  - {fileID: 5438026034800647034}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -550,7 +550,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6949803874820909019
+--- !u!114 &5163078172303463541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -559,10 +559,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7690637989576024836}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2c4414239f1704ebeffd26a5790a5d, type: 3}
+  m_Script: {fileID: 11500000, guid: 103f7d5a66ad33845a1025a957bf2f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotate: 0
-  movement: {x: 0, y: 0}
-  playerSpeed: 5
-  camera: {fileID: 7743403103582934316}
+  moveInputVector: {x: 0, y: 0}
+  lookInputVector: {x: 0, y: 0}
+  lookTransformPoint: {fileID: 2785794872126079546}
+  moveSpeed: 5
+  walkSpeed: 25
+  runSpeed: 25
+  turnSpeed: 10
+  maxVerticalLookAngle: 80
+  lookVerticalDirection: 0
+  velocity: 0
+  gravity: 9.8
+  characterController: {fileID: 0}
