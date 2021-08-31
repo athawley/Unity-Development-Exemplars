@@ -299,7 +299,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 65, y: 45, z: 0}
---- !u!1001 &1455714006
+--- !u!1001 &1024113582
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -316,11 +316,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 856046593545374130, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 2.55
       objectReference: {fileID: 0}
     - target: {fileID: 856046593545374130, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6
+      value: -4.17
       objectReference: {fileID: 0}
     - target: {fileID: 856046593545374130, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -350,9 +350,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5163078172303463541, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
+      propertyPath: turnSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482305974184769657, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4788192c9a934044e9faa9cf740da04b, type: 2}
     - target: {fileID: 7690637989576024836, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
       propertyPath: m_Name
       value: PlayerFPS
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743403103582934316, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743403103582934316, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743403103582934316, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743403103582934316, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
@@ -363,6 +387,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 512566614752419800, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3edcb3ba0f913fe428b60c166a2c56d5, type: 2}
+    - target: {fileID: 1805754024338497914, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3edcb3ba0f913fe428b60c166a2c56d5, type: 2}
     - target: {fileID: 4531202946122486831, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -407,6 +439,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6347796539113957641, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3edcb3ba0f913fe428b60c166a2c56d5, type: 2}
+    - target: {fileID: 6640495244154078992, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3edcb3ba0f913fe428b60c166a2c56d5, type: 2}
+    - target: {fileID: 7415675336617387529, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3edcb3ba0f913fe428b60c166a2c56d5, type: 2}
     - target: {fileID: 7897261330962849830, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
       propertyPath: m_Name
       value: Level

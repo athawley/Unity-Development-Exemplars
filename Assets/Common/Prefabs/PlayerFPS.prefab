@@ -566,9 +566,8 @@ MonoBehaviour:
   lookInputVector: {x: 0, y: 0}
   lookTransformPoint: {fileID: 2785794872126079546}
   moveSpeed: 5
-  walkSpeed: 25
-  runSpeed: 25
-  turnSpeed: 10
+  turnSpeed: 200
+  lookRotateDirection: 0
   maxVerticalLookAngle: 80
   lookVerticalDirection: 0
   velocity: 0

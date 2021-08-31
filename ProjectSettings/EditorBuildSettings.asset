@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Dynamic3DGrid/Dynamic3DGrid.unity
+    guid: 90aa61fa89d2e8b4594288d54617304b
   m_configObjects: {}

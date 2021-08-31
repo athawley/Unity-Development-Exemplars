@@ -13,10 +13,10 @@ public class PlayerMovementFPS : MonoBehaviour
     public Transform lookTransformPoint;
 
     // Movement and Look Variables
-    public float moveSpeed = 5;
-    public float walkSpeed = 25;
-    public float runSpeed = 25;
-    public float turnSpeed = 25;
+    public float moveSpeed = 25;
+    public float turnSpeed = 200;
+
+    public float lookRotateDirection = 0;
     public float maxVerticalLookAngle = 80;
     public float lookVerticalDirection = 0;
 
@@ -40,26 +40,29 @@ public class PlayerMovementFPS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, lookInputVector.x * turnSpeed * Time.deltaTime, 0);
+        lookRotateDirection += lookInputVector.x;
+        lookRotateDirection = Mathf.Clamp(lookRotateDirection, -turnSpeed, turnSpeed);
+        transform.Rotate(0, lookRotateDirection * Time.deltaTime, 0);
+        // The longer looking in a direction the greater the value move in that direction
+        lookVerticalDirection += lookInputVector.y;
+        // Set the min and max angles to be able to look vertically
+        lookVerticalDirection = Mathf.Clamp(lookVerticalDirection, -maxVerticalLookAngle, maxVerticalLookAngle);
+        // Rotate the player to look towards 
+        lookTransformPoint.localRotation = Quaternion.Euler(-lookVerticalDirection, 0, 0);
+
 
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
-        float curSpeed = moveSpeed * moveInputVector.y;
-        float strafeSpeed = moveSpeed * moveInputVector.x;
-        characterController.SimpleMove(forward * curSpeed + right * strafeSpeed);
+        float curSpeed = moveSpeed * moveInputVector.y * Time.deltaTime;
+        float strafeSpeed = moveSpeed * moveInputVector.x * Time.deltaTime;
+        characterController.Move(forward * curSpeed + right * strafeSpeed);
 
-        // Build up rotation up/down input over time
-        lookVerticalDirection += lookInputVector.y;
-        // Clamp up/down rotation within logical bounds
-        lookVerticalDirection = Mathf.Clamp(lookVerticalDirection, -maxVerticalLookAngle, maxVerticalLookAngle);
-        // Apply rotation to player
-        lookTransformPoint.localRotation = Quaternion.Euler(-lookVerticalDirection, 0, 0);
-
+        // If on the ground set velocity to 0 as not falling
         if(characterController.isGrounded)
         {
             velocity = 0;
         }
-        else
+        else // not on the ground to have negative velocity increase by gravity over time to cause to fall.
         {
             velocity -= gravity * Time.deltaTime;
             characterController.Move(new Vector3(0, velocity, 0));
