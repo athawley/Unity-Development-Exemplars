@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/TopDown2dMovement_UDLR/TopDown2DMovement_UDLR_Animation.unity
-    guid: fa1883cca39422c48905bc578403670b
+    path: Assets/Platformer2D/PlatformMovement2D.unity
+    guid: 9b47f93379a75b24eb938369b1afbe04
   m_configObjects: {}
