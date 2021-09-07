@@ -11,7 +11,6 @@ public class PlayerMovement2D_TopDown_UDLR_Animation : MonoBehaviour
     public float playerSpeed = 5;
     Animator animator;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +20,8 @@ public class PlayerMovement2D_TopDown_UDLR_Animation : MonoBehaviour
 
     void OnMove(InputValue iv) {
         movement = iv.Get<Vector2>();
-        animator.SetInteger("x_input", (int)movement.x);
-        animator.SetInteger("y_input", (int)movement.y);
+        animator.SetInteger("xInput", (int)movement.x);
+        animator.SetInteger("yInput", (int)movement.y);
     }
 
     // Update is called once per frame
