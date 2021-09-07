@@ -46,17 +46,11 @@ public class PlayerMovement2DPlatformer : MonoBehaviour
         }
     }
 
-    void Update() {
-        //rb.AddForce(new Vector2(movement.x, 0.0f) * playerSpeed * Time.deltaTime);
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
         // Check if isGrounded
         GroundCheck();
-        // Debug.Log("Grounded: " + isGrounded);
-        
 
         rb.velocity = rb.velocity + (new Vector2(movement.x, 0.0f) * playerSpeed * Time.deltaTime);
 
