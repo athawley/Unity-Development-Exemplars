@@ -297,7 +297,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 956801865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d92b4861b1d0e9e40b1695e69245465f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c503e6ea845edb45b39c60cb904a600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 5
@@ -536,6 +536,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1433244081652490167, guid: 7b8c86544871d624683bad5ac39011f0, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433244081730560879, guid: 7b8c86544871d624683bad5ac39011f0, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433244081971684568, guid: 7b8c86544871d624683bad5ac39011f0, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433244082373956340, guid: 7b8c86544871d624683bad5ac39011f0, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433244083102750977, guid: 7b8c86544871d624683bad5ac39011f0, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433244083141350709, guid: 7b8c86544871d624683bad5ac39011f0, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4323294202123206796, guid: 7b8c86544871d624683bad5ac39011f0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -583,6 +607,10 @@ PrefabInstance:
     - target: {fileID: 4323294202123206799, guid: 7b8c86544871d624683bad5ac39011f0, type: 3}
       propertyPath: m_Name
       value: Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585421813315654989, guid: 7b8c86544871d624683bad5ac39011f0, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b8c86544871d624683bad5ac39011f0, type: 3}
