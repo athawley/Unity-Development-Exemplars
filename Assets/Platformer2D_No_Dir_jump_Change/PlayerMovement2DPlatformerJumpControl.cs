@@ -56,6 +56,7 @@ public class PlayerMovement2DPlatformerJumpControl : MonoBehaviour
         } else {
             //rb.velocity = rb.velocity + (new Vector2(0.0f, 0.0f) * playerSpeed * Time.deltaTime);
         }
+        
 
         // No horizontal movement, stop velocity if on the ground.
         if(movement.x == 0 && isGrounded == true) {
