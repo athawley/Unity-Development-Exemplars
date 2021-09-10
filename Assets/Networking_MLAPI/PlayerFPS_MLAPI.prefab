@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 67970508984265423}
   - component: {fileID: 6788432744787973111}
   - component: {fileID: 4155479333347225729}
+  - component: {fileID: 1481701542994039603}
   m_Layer: 0
   m_Name: PlayerFPS_MLAPI
   m_TagString: Untagged
@@ -514,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 5accbfd4f3b8b6246b33f94177b593b0, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 7e3c0528d898c6643bbbf7a7052aecb0, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -566,10 +567,27 @@ MonoBehaviour:
   lookInputVector: {x: 0, y: 0}
   lookTransformPoint: {fileID: 2785794872126079546}
   moveSpeed: 25
-  turnSpeed: 200
+  turnSpeed: 100
   lookRotateDirection: 0
   maxVerticalLookAngle: 80
   lookVerticalDirection: 0
   velocity: 0
   gravity: 9.8
   characterController: {fileID: 0}
+--- !u!114 &1481701542994039603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7690637989576024836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NetworkInstanceId: 0
+  PrefabHash: 2347385834756849843
+  PrefabHashGenerator: PlayerFPS_MLAPI
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0

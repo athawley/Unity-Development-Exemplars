@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using MLAPI;
+using MLAPI.Messaging;
+using MLAPI.NetworkVariable;
 
-public class PlayerMovementFPS_MLAPI : MonoBehaviour
+public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 {
     // x for l/r, y for f/b
     public Vector2 moveInputVector;
@@ -25,21 +28,78 @@ public class PlayerMovementFPS_MLAPI : MonoBehaviour
 
     public CharacterController characterController;
 
-    void Start() {
-        characterController = GetComponent<CharacterController>();
+   private PlayerControlsMLAPI controls;
+
+    private PlayerControlsMLAPI Controls
+    {
+        get
+        {
+            if(controls != null)
+            {
+                return controls;
+            }
+            return controls = new PlayerControlsMLAPI();
+        }
     }
 
+    // Start is called before the first frame update
+    public override void NetworkStart()
+    {
+       
+        base.NetworkStart();
+
+        characterController = GetComponent<CharacterController>();
+
+        if(IsLocalPlayer)
+        {
+            enabled = true;
+            //var renderColor = GetComponent<Renderer>();
+            //renderColor.material.SetColor("_Color", Color.blue);
+        } else
+        {
+            enabled = false;
+            //var renderColor = GetComponent<Renderer>();
+            //renderColor.material.SetColor("_Color", Color.red);
+        }
+
+
+        Controls.Player.Move.performed += ctx => SetMovement(ctx.ReadValue<Vector2>());
+        Controls.Player.Move.canceled += ctx => CancelMovement();
+
+        Controls.Player.Look.performed += ctx => SetLook(ctx.ReadValue<Vector2>());
+        Controls.Player.Look.canceled += ctx => CancelLook();
+    }
+
+    private void SetMovement(Vector2 inputVector) => moveInputVector = inputVector;
+
+    private void SetLook(Vector2 lookVector) => lookInputVector = lookVector;
+
+    private void CancelMovement() => moveInputVector = Vector2.zero;
+
+    private void CancelLook() => lookInputVector = Vector2.zero;
+
+    private void OnEnable() => Controls.Enable();
+    private void OnDisable() => Controls.Disable();
+
+   /*
     void OnMove(InputValue iv) {
         moveInputVector = iv.Get<Vector2>();
     }
-
+    */
+   /*
     void OnLook(InputValue iv) {
         lookInputVector = iv.Get<Vector2>();
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
     {
+
+        if(!IsLocalPlayer)
+        {
+            return;
+        }
+
         lookRotateDirection += lookInputVector.x;
         lookRotateDirection = Mathf.Clamp(lookRotateDirection, -turnSpeed, turnSpeed);
         transform.Rotate(0, lookRotateDirection * Time.deltaTime, 0);
