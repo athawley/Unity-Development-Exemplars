@@ -26,6 +26,8 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     public float velocity = 0;
     public float gravity = 9.8f;
 
+    public GameObject[] spawnLocations;
+
     public CharacterController characterController;
 
    private PlayerControlsMLAPI controls;
@@ -48,19 +50,25 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
        
         base.NetworkStart();
 
+        spawnLocations = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
         characterController = GetComponent<CharacterController>();
+        lookTransformPoint = transform.Find("visor").transform;
+        transform.Find("visor").transform.Find("Camera").gameObject.SetActive(true); /// TODO
 
         if(IsLocalPlayer)
         {
             enabled = true;
-            //var renderColor = GetComponent<Renderer>();
-            //renderColor.material.SetColor("_Color", Color.blue);
+            var renderColor = transform.Find("body").GetComponent<Renderer>();
+            renderColor.material.SetColor("_Color", Color.green);
         } else
         {
             enabled = false;
-            //var renderColor = GetComponent<Renderer>();
-            //renderColor.material.SetColor("_Color", Color.red);
+            var renderColor = transform.Find("body").GetComponent<Renderer>();
+            renderColor.material.SetColor("_Color", Color.red);
         }
+
+        transform.position = spawnLocations[Random.Range(0,3)].transform.position;
 
 
         Controls.Player.Move.performed += ctx => SetMovement(ctx.ReadValue<Vector2>());

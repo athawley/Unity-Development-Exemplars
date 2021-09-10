@@ -10,6 +10,8 @@ public class UINetworkConnect : MonoBehaviour
     public Text userRole;
     public Canvas connectMenu;
 
+    public GameObject[] spawnLocations;
+
     // Start is called before the first frame update
     void Start()
     {
