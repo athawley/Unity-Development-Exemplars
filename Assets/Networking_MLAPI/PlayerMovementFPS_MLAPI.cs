@@ -54,13 +54,16 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
         characterController = GetComponent<CharacterController>();
         lookTransformPoint = transform.Find("visor").transform;
-        transform.Find("visor").transform.Find("Camera").gameObject.SetActive(true); /// TODO
+        //transform.Find("visor").transform.Find("Camera").gameObject.SetActive(true); /// TODO
 
         if(IsLocalPlayer)
         {
             enabled = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            transform.Find("visor").transform.Find("Camera").gameObject.SetActive(true);
             var renderColor = transform.Find("body").GetComponent<Renderer>();
             renderColor.material.SetColor("_Color", Color.green);
+            transform.position = spawnLocations[Random.Range(0,3)].transform.position;
         } else
         {
             enabled = false;
@@ -68,15 +71,14 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
             renderColor.material.SetColor("_Color", Color.red);
         }
 
-        transform.position = spawnLocations[Random.Range(0,3)].transform.position;
-
-
         Controls.Player.Move.performed += ctx => SetMovement(ctx.ReadValue<Vector2>());
         Controls.Player.Move.canceled += ctx => CancelMovement();
 
         Controls.Player.Look.performed += ctx => SetLook(ctx.ReadValue<Vector2>());
         Controls.Player.Look.canceled += ctx => CancelLook();
+        Update();
     }
+
 
     private void SetMovement(Vector2 inputVector) => moveInputVector = inputVector;
 
@@ -99,6 +101,13 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
         lookInputVector = iv.Get<Vector2>();
     }*/
 
+    void Awake() {
+        if(!IsLocalPlayer)
+        {
+            return;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -108,9 +117,14 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
             return;
         }
 
-        lookRotateDirection += lookInputVector.x;
-        lookRotateDirection = Mathf.Clamp(lookRotateDirection, -turnSpeed, turnSpeed);
-        transform.Rotate(0, lookRotateDirection * Time.deltaTime, 0);
+        if(lookInputVector.x == 0) {
+            //transform.Rotate(0, lookRotateDirection * Time.deltaTime, 0);
+            lookRotateDirection = 0;
+        } else {
+            lookRotateDirection += lookInputVector.x;
+            lookRotateDirection = Mathf.Clamp(lookRotateDirection, -turnSpeed, turnSpeed);
+            transform.Rotate(0, lookRotateDirection, 0);
+        }
         // The longer looking in a direction the greater the value move in that direction
         lookVerticalDirection += lookInputVector.y;
         // Set the min and max angles to be able to look vertically
