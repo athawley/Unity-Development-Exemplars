@@ -8,6 +8,9 @@ using MLAPI.NetworkVariable;
 
 public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 {
+    // Player Colour
+    Color playerColour;
+
     // x for l/r, y for f/b
     public Vector2 moveInputVector;
     // x for rotate l/r, y for look u/d
@@ -47,7 +50,6 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     // Start is called before the first frame update
     public override void NetworkStart()
     {
-       
         base.NetworkStart();
 
         spawnLocations = GameObject.FindGameObjectsWithTag("SpawnPoint");
@@ -61,14 +63,14 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
             enabled = true;
             Cursor.lockState = CursorLockMode.Locked;
             transform.Find("visor").transform.Find("Camera").gameObject.SetActive(true);
-            var renderColor = transform.Find("body").GetComponent<Renderer>();
-            renderColor.material.SetColor("_Color", Color.green);
-            transform.position = spawnLocations[Random.Range(0,3)].transform.position;
+            //var renderColor = transform.Find("body").GetComponent<Renderer>();
+            //renderColor.material.SetColor("_Color", Color.green);
+            //transform.position = spawnLocations[Random.Range(0,3)].transform.position;
         } else
         {
             enabled = false;
-            var renderColor = transform.Find("body").GetComponent<Renderer>();
-            renderColor.material.SetColor("_Color", Color.red);
+            //var renderColor = transform.Find("body").GetComponent<Renderer>();
+            //renderColor.material.SetColor("_Color", Color.red);
         }
 
         Controls.Player.Move.performed += ctx => SetMovement(ctx.ReadValue<Vector2>());
@@ -76,7 +78,11 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
         Controls.Player.Look.performed += ctx => SetLook(ctx.ReadValue<Vector2>());
         Controls.Player.Look.canceled += ctx => CancelLook();
-        Update();
+        //Update();
+
+        RespawnClientRpc(spawnLocations[Random.Range(0,3)].transform.position);
+
+        //InvokeClientRpcOnEveryone(Respawn, pos);
     }
 
 
@@ -90,6 +96,16 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     private void OnEnable() => Controls.Enable();
     private void OnDisable() => Controls.Disable();
+
+    [ClientRpc]
+    void RespawnClientRpc(Vector3 position) {
+        var renderColor = transform.Find("body").GetComponent<Renderer>();
+        renderColor.material.SetColor("_Color", new Color(Random.Range(100,200),Random.Range(0,200),Random.Range(0,155)));
+        characterController.enabled = false;
+        transform.position = position;
+        characterController.enabled = true;
+    }
+    
 
    /*
     void OnMove(InputValue iv) {

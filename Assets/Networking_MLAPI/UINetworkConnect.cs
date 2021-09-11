@@ -53,7 +53,9 @@ public class UINetworkConnect : MonoBehaviour
 
     public void StartClient()
     {
-        NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = "127.0.0.1";
+
+
+        NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = ipaddress.text;
         NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectPort = 12345;
         NetworkManager.Singleton.StartClient();
         userRole.text = "Client";
