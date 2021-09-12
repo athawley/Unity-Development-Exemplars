@@ -9,7 +9,15 @@ using MLAPI.NetworkVariable;
 public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 {
     // Player Colour
-    Color playerColour;
+    //[SerializeField]
+    //private NetworkVariableColor32 playerColour { get; set; } = new NetworkVariableColor32();
+
+    //public NetworkVariableColor32 PlayerColour => playerColour;
+
+    Color32 localPlayerColour;
+
+    List<NetworkVariableColor32> playerColours  { get; set; } = new List<NetworkVariableColor32>();
+
 
     // x for l/r, y for f/b
     public Vector2 moveInputVector;
@@ -56,21 +64,18 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
         characterController = GetComponent<CharacterController>();
         lookTransformPoint = transform.Find("visor").transform;
-        //transform.Find("visor").transform.Find("Camera").gameObject.SetActive(true); /// TODO
 
         if(IsLocalPlayer)
         {
             enabled = true;
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
             transform.Find("visor").transform.Find("Camera").gameObject.SetActive(true);
-            //var renderColor = transform.Find("body").GetComponent<Renderer>();
-            //renderColor.material.SetColor("_Color", Color.green);
-            //transform.position = spawnLocations[Random.Range(0,3)].transform.position;
+
         } else
         {
             enabled = false;
             //var renderColor = transform.Find("body").GetComponent<Renderer>();
-            //renderColor.material.SetColor("_Color", Color.red);
+            //renderColor.material.SetColor("_Color", playerColour.Value);
         }
 
         Controls.Player.Move.performed += ctx => SetMovement(ctx.ReadValue<Vector2>());
@@ -78,11 +83,10 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
         Controls.Player.Look.performed += ctx => SetLook(ctx.ReadValue<Vector2>());
         Controls.Player.Look.canceled += ctx => CancelLook();
-        //Update();
-
+ 
+        
         RespawnClientRpc(spawnLocations[Random.Range(0,3)].transform.position);
-
-        //InvokeClientRpcOnEveryone(Respawn, pos);
+        //NetworkManager.
     }
 
 
@@ -99,11 +103,30 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     [ClientRpc]
     void RespawnClientRpc(Vector3 position) {
+        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
         var renderColor = transform.Find("body").GetComponent<Renderer>();
-        renderColor.material.SetColor("_Color", new Color(Random.Range(100,200),Random.Range(0,200),Random.Range(0,155)));
+        renderColor.material.SetColor("_Color", new Color32((byte)Random.Range(0,255), (byte)Random.Range(0,255), (byte)Random.Range(0,255), 1));
+        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;
+        
+        //var renderColor = transform.Find("body").GetComponent<Renderer>();
+        //renderColor.material.SetColor("_Color", new Color(Random.Range(100,200),Random.Range(0,200),Random.Range(0,155)));
         characterController.enabled = false;
         transform.position = position;
         characterController.enabled = true;
+
+
+    }
+
+    [ClientRpc]
+    void ChangeColourClientRpc(Color32 c) {
+        /*if(IsOwner) {
+            return;
+        }*/
+
+        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
+        var renderColor = transform.Find("body").GetComponent<Renderer>();
+        renderColor.material.SetColor("_Color", c);
+        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;
     }
     
 
@@ -123,7 +146,14 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
             return;
         }
     }
-
+/*
+    void Start() {
+        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
+        var renderColor = transform.Find("body").GetComponent<Renderer>();
+        //renderColor.material.SetColor("_Color", playerColour.Value);
+        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;
+    }
+*/
     // Update is called once per frame
     void Update()
     {

@@ -58,6 +58,9 @@ public class UINetworkConnect : MonoBehaviour
         NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = ipaddress.text;
         NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectPort = 12345;
         NetworkManager.Singleton.StartClient();
+
+        
+
         userRole.text = "Client";
         Camera.main.gameObject.SetActive(false);
         connectMenu.gameObject.SetActive(false);
