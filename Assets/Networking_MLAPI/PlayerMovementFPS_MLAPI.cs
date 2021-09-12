@@ -16,7 +16,9 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     Color32 localPlayerColour;
 
-    List<NetworkVariableColor32> playerColours  { get; set; } = new List<NetworkVariableColor32>();
+    //List<NetworkVariableColor32> playerColours  { get; set; } = new List<NetworkVariableColor32>();
+
+    NetworkVariableColor32 playerColour = new NetworkVariableColor32();
 
 
     // x for l/r, y for f/b
@@ -70,6 +72,7 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
             enabled = true;
             //Cursor.lockState = CursorLockMode.Locked;
             transform.Find("visor").transform.Find("Camera").gameObject.SetActive(true);
+            
 
         } else
         {
@@ -84,6 +87,11 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
         Controls.Player.Look.performed += ctx => SetLook(ctx.ReadValue<Vector2>());
         Controls.Player.Look.canceled += ctx => CancelLook();
  
+        /// TODO: Will generate, new clients do not show with updated colours on existing players / clients. e.g. host doesn't see colours.
+        //SetPlayerColourServerRpc(new Color32((byte)Random.Range(0,255),(byte)Random.Range(0,255),(byte)Random.Range(0,255),1));
+        if(IsOwner) {
+            SetPlayerColourServerRpc(new Color32((byte)Random.Range(0,255),(byte)Random.Range(0,255),0,1));
+        }
         
         RespawnClientRpc(spawnLocations[Random.Range(0,3)].transform.position);
         //NetworkManager.
@@ -98,15 +106,44 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     private void CancelLook() => lookInputVector = Vector2.zero;
 
-    private void OnEnable() => Controls.Enable();
-    private void OnDisable() => Controls.Disable();
+    //private void OnEnable() => Controls.Enable();
+    //private void OnDisable() => Controls.Disable();
+
+    private void OnEnable() { 
+        playerColour.OnValueChanged += OnPlayerColourChanged;
+        Controls.Enable();
+    }
+    private void OnDisable() { 
+        playerColour.OnValueChanged -= OnPlayerColourChanged;
+        Controls.Disable();
+    }
+
+    //void OnPlayerColourChanged(Color32 oldColour, Color32 newColour) {
+    private void OnPlayerColourChanged(Color32 oldColour, Color32 newColour) {
+        if(!IsClient) {
+            return;
+        }
+
+        // Update Renderer
+        
+        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
+        var renderColor = transform.Find("body").GetComponent<Renderer>();
+        renderColor.material.SetColor("_Color", newColour);
+        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;
+        
+    }
+
+    [ServerRpc]
+    public void SetPlayerColourServerRpc(Color32 col) {
+        playerColour.Value = col;
+    }
 
     [ClientRpc]
     void RespawnClientRpc(Vector3 position) {
-        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
+        /*transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
         var renderColor = transform.Find("body").GetComponent<Renderer>();
         renderColor.material.SetColor("_Color", new Color32((byte)Random.Range(0,255), (byte)Random.Range(0,255), (byte)Random.Range(0,255), 1));
-        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;
+        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;*/
         
         //var renderColor = transform.Find("body").GetComponent<Renderer>();
         //renderColor.material.SetColor("_Color", new Color(Random.Range(100,200),Random.Range(0,200),Random.Range(0,155)));
