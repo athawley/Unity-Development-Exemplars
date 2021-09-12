@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
+using UnityEngine.UI;
 
 public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 {
@@ -14,11 +15,12 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     //public NetworkVariableColor32 PlayerColour => playerColour;
 
-    Color32 localPlayerColour;
+    //Color32 localPlayerColour;
 
     //List<NetworkVariableColor32> playerColours  { get; set; } = new List<NetworkVariableColor32>();
 
-    NetworkVariableColor32 playerColour = new NetworkVariableColor32();
+    
+    public NetworkVariableColor32 playerColour = new NetworkVariableColor32(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.ServerOnly, ReadPermission = NetworkVariablePermission.Everyone});
 
 
     // x for l/r, y for f/b
@@ -43,7 +45,7 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     public CharacterController characterController;
 
-   private PlayerControlsMLAPI controls;
+    private PlayerControlsMLAPI controls;
 
     private PlayerControlsMLAPI Controls
     {
@@ -61,6 +63,9 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     public override void NetworkStart()
     {
         base.NetworkStart();
+        //Text userText = transform.Find("Canvas").gameObject.transform.Find("UserRole").GetComponent<Text>();
+        //userText.text = "Her there";
+        Debug.Log("ID: " + NetworkManager.Singleton.LocalClientId);
 
         spawnLocations = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
@@ -77,6 +82,7 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
         } else
         {
             enabled = false;
+            //Controls.Disable();
             //var renderColor = transform.Find("body").GetComponent<Renderer>();
             //renderColor.material.SetColor("_Color", playerColour.Value);
         }
@@ -90,11 +96,22 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
         /// TODO: Will generate, new clients do not show with updated colours on existing players / clients. e.g. host doesn't see colours.
         //SetPlayerColourServerRpc(new Color32((byte)Random.Range(0,255),(byte)Random.Range(0,255),(byte)Random.Range(0,255),1));
         if(IsOwner) {
-            SetPlayerColourServerRpc(new Color32((byte)Random.Range(0,255),(byte)Random.Range(0,255),0,1));
+            SetPlayerColourServerRpc(new Color32((byte)Random.Range(0,255),(byte)Random.Range(0,255),(byte)Random.Range(0,255),1));
+            //playerColour.Value = new Color32((byte)Random.Range(0,255),(byte)Random.Range(0,255),0,1);
+        } else {
+            var renderColor = transform.Find("body").GetComponent<Renderer>();
+            renderColor.material.SetColor("_Color", playerColour.Value);
         }
+        
+        /*transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
+        var renderColor = transform.Find("body").GetComponent<Renderer>();
+        renderColor.material.SetColor("_Color", playerColour.Value);
+        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;*/
         
         RespawnClientRpc(spawnLocations[Random.Range(0,3)].transform.position);
         //NetworkManager.
+
+
     }
 
 
@@ -111,10 +128,12 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     private void OnEnable() { 
         playerColour.OnValueChanged += OnPlayerColourChanged;
+        //var renderColor = transform.Find("body").GetComponent<Renderer>();
+        //renderColor.material.SetColor("_Color", playerColour.Value);
         Controls.Enable();
     }
     private void OnDisable() { 
-        playerColour.OnValueChanged -= OnPlayerColourChanged;
+        //playerColour.OnValueChanged -= OnPlayerColourChanged;
         Controls.Disable();
     }
 
@@ -135,7 +154,9 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     [ServerRpc]
     public void SetPlayerColourServerRpc(Color32 col) {
+        //transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
         playerColour.Value = col;
+        //transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;
     }
 
     [ClientRpc]
