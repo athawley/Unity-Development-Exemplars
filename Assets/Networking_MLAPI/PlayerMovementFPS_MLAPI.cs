@@ -92,6 +92,9 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
         Controls.Player.Look.performed += ctx => SetLook(ctx.ReadValue<Vector2>());
         Controls.Player.Look.canceled += ctx => CancelLook();
+
+        Controls.Player.Fire.performed += ctx => SetFire();
+        Controls.Player.Fire.canceled += ctx => CancelFire();
  
         /// TODO: Will generate, new clients do not show with updated colours on existing players / clients. e.g. host doesn't see colours.
         //SetPlayerColourServerRpc(new Color32((byte)Random.Range(0,255),(byte)Random.Range(0,255),(byte)Random.Range(0,255),1));
@@ -116,12 +119,14 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
 
     private void SetMovement(Vector2 inputVector) => moveInputVector = inputVector;
-
-    private void SetLook(Vector2 lookVector) => lookInputVector = lookVector;
-
     private void CancelMovement() => moveInputVector = Vector2.zero;
 
+    private void SetLook(Vector2 lookVector) => lookInputVector = lookVector;
     private void CancelLook() => lookInputVector = Vector2.zero;
+    private void SetFire() {
+        Debug.Log("Fire pressed on client");
+    }
+    private void CancelFire() {}
 
     //private void OnEnable() => Controls.Enable();
     //private void OnDisable() => Controls.Disable();
@@ -135,6 +140,21 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     private void OnDisable() { 
         //playerColour.OnValueChanged -= OnPlayerColourChanged;
         Controls.Disable();
+    }
+
+    [ServerRpc]
+    void FireServerRpc() {
+
+    }
+
+    [ClientRpc]
+    void FireClientRpc() {
+
+    }
+
+    [ClientRpc]
+    void HitClientRpc(int id) {
+
     }
 
     //void OnPlayerColourChanged(Color32 oldColour, Color32 newColour) {
