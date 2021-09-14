@@ -57,8 +57,7 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     public override void NetworkStart()
     {
         base.NetworkStart();
-        //Text userText = transform.Find("Canvas").gameObject.transform.Find("UserRole").GetComponent<Text>();
-        //userText.text = "Her there";
+
         Debug.Log("ID: " + NetworkManager.Singleton.LocalClientId);
 
         spawnLocations = GameObject.FindGameObjectsWithTag("SpawnPoint");
@@ -95,10 +94,8 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
         }
         
         
-        
         RespawnClientRpc();
         //NetworkManager.
-
 
     }
 
@@ -139,86 +136,22 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
  
         if (Physics.Raycast (forwardRay, out hit, 50.0f)) {
             if(hit.transform.gameObject.CompareTag("Player")) {
-                //hit.transform
-
-                //hit.transform.gameObject.GetComponent<Renderer>().enabled = false;
-                //Renderer r = hit.transform.GetComponent<Renderer>();
-                //r.material.SetColor("_Color", playerColour.Value);
-
                 hit.collider.GetComponentInParent<PlayerMovementFPS_MLAPI>().TakeDamage(50);
-
                 Debug.Log("I hit a player");
                 hit.transform.gameObject.GetComponent<Renderer>().enabled = true;
             } else {
-
                 Debug.Log("I don't know what I hit");
             }
         }
     }
 
-    [ServerRpc]
-    void FireServerRpc(int firedBy) {
-        if(firedBy > 0) {
-            firedBy--;
-        }
-        Debug.Log("Server is " + NetworkManager.LocalClientId + ". " + firedBy + " told me they have shot.");
-        RaycastHit hit;
-
-        Transform source = NetworkManager.Singleton.ConnectedClientsList[firedBy].PlayerObject.transform;
-        Transform target = NetworkManager.Singleton.ConnectedClientsList[firedBy].PlayerObject.transform;
-
-        Ray forwardRay = new Ray (source.position, source.forward);
- 
-        if (Physics.Raycast (forwardRay, out hit, 50.0f)) {
-
-            if(hit.transform.gameObject.CompareTag("Player")) {
-                    //hit.transform
-
-                hit.transform.gameObject.GetComponent<Renderer>().enabled = false;
-                Renderer r = hit.transform.GetComponent<Renderer>();
-                r.material.SetColor("_Color", playerColour.Value);
-                Debug.Log("Player " + firedBy + " - " + hit.transform.gameObject.ToString());
-                hit.transform.gameObject.GetComponent<Renderer>().enabled = true;
-
-                //int hitID = (int)hit.transform.GetComponent<NetworkObject>().NetworkManager.LocalClientId;
-
-                //Debug.Log("Player" + hitID + " was hit by " + firedBy);
-
-                // Update all clients
-                
-            } else {
-
-                Debug.Log("I don't know what I hit");
-            }
-        }
-    }
-
+    // Take damage and update health
     public void TakeDamage(float damage) {
         playerHealth.Value -= damage;
-        UpdateUIClientRpc();
         if(playerHealth.Value <= 0) { // Respawn
             playerHealth.Value = 100;
-            RespawnClientRpc();
+            RespawnClientRpc(); // If the player has died respawn them.
         }
-    }
-
-    [ClientRpc]
-    void UpdateUIClientRpc() {
-        //playerHealthTextBox.text = "" + playerHealth.Value;
-    }
-
-    [ClientRpc]
-    void FireClientRpc() {
-
-    }
-
-    [ClientRpc]
-    void HitClientRpc(int id) {
-    /*    go.GetComponent<Renderer>().enabled = false;
-        Renderer r = go.GetComponent<Renderer>();
-        r.material.SetColor("_Color", playerColour.Value);
-        Debug.Log("Player " + NetworkManager.Singleton.LocalClientId);
-        go.GetComponent<Renderer>().enabled = true;*/
     }
 
     private void OnPlayerHealthChanged(float oldValue, float newValue) {
@@ -228,19 +161,17 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
         playerHealthTextBox.text = "" + playerHealth.Value;
     }
 
-    //void OnPlayerColourChanged(Color32 oldColour, Color32 newColour) {
+    // Runs when playerColour value is changed on any client or server
     private void OnPlayerColourChanged(Color32 oldColour, Color32 newColour) {
         if(!IsClient) {
             return;
         }
 
-        // Update Renderer
-        
+        // Update Renderer and colour of players
         transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
         var renderColor = transform.Find("body").GetComponent<Renderer>();
         renderColor.material.SetColor("_Color", newColour);
         transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;
-        
     }
 
     [ServerRpc]
@@ -250,15 +181,14 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     [ClientRpc]
     void RespawnClientRpc() {
-        
         //StartCoroutine(RespawnPlayer());
         Vector3 position = spawnLocations[Random.Range(0,4)].transform.position;
         characterController.enabled = false;
         transform.position = position;
         characterController.enabled = true;
-
     }
 
+    /* TODO Respaen player on a delay
     IEnumerator RespawnPlayer() {
         Vector3 position = spawnLocations[Random.Range(0,4)].transform.position;
         yield return new WaitForSeconds(1f);
@@ -266,38 +196,11 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
         transform.position = position;
         characterController.enabled = true;
     }
-
-    [ClientRpc]
-    void ChangeColourClientRpc(Color32 c) {
-        /*if(IsOwner) {
-            return;
-        }*/
-
-        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
-        var renderColor = transform.Find("body").GetComponent<Renderer>();
-        renderColor.material.SetColor("_Color", c);
-        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;
-    }
-    
-
-   /*
-    void OnMove(InputValue iv) {
-        moveInputVector = iv.Get<Vector2>();
-    }
     */
-   /*
-    void OnLook(InputValue iv) {
-        lookInputVector = iv.Get<Vector2>();
-    }*/
 
-    void Awake() {
-        if(!IsLocalPlayer)
-        {
-            return;
-        }
-    }
 
-    // Update is called once per frame
+
+    // Update is called once per frame, gravity, movement and look only
     void Update()
     {
 
