@@ -73,6 +73,7 @@ public class UINetworkConnect : MonoBehaviour
         connectMenu.gameObject.SetActive(false);
     }
 
-    
+
+        
 
 }

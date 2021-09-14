@@ -124,7 +124,21 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     private void SetLook(Vector2 lookVector) => lookInputVector = lookVector;
     private void CancelLook() => lookInputVector = Vector2.zero;
     private void SetFire() {
-        Debug.Log("Fire pressed on client");
+        //Debug.Log("Fire pressed InputAction");
+        FireServerRpc(NetworkManager.LocalClientId);
+
+        RaycastHit hit;
+        Ray forwardRay = new Ray (transform.position, Vector3.forward);
+ 
+        if (Physics.Raycast (forwardRay, out hit, 5.0f)) {
+            Debug.Log("Raycast created " + hit.ToString());
+            if(hit.transform.gameObject.CompareTag("Player")) {
+                Debug.Log("I hit a player");
+            } else {
+
+                Debug.Log("I don't know what I hit");
+            }
+        }
     }
     private void CancelFire() {}
 
@@ -143,8 +157,8 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     }
 
     [ServerRpc]
-    void FireServerRpc() {
-
+    void FireServerRpc(ulong firedBy) {
+        //Debug.Log("This is " + NetworkManager.LocalClientId + ". " + firedBy + " told me they have shot.");
     }
 
     [ClientRpc]
@@ -153,7 +167,7 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     }
 
     [ClientRpc]
-    void HitClientRpc(int id) {
+    void HitClientRpc(ulong playerHitId) {
 
     }
 
@@ -273,5 +287,23 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
             velocity -= gravity * Time.deltaTime;
             characterController.Move(new Vector3(0, velocity, 0));
         }
+    }
+
+    public void Disconnect()
+    {
+        if (IsHost) 
+        {
+            NetworkManager.Singleton.StopHost();
+        }
+        else if (IsClient) 
+        {
+            NetworkManager.Singleton.StopClient();
+        }
+        else if (IsServer) 
+        {
+            NetworkManager.Singleton.StopServer();
+        }
+        
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Networking_MLAPI_Menu");
     }
 }
