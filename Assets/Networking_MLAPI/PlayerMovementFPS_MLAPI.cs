@@ -9,16 +9,9 @@ using UnityEngine.UI;
 
 public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 {
-    // Player Colour
-    //[SerializeField]
-    //private NetworkVariableColor32 playerColour { get; set; } = new NetworkVariableColor32();
 
-    //public NetworkVariableColor32 PlayerColour => playerColour;
-
-    //Color32 localPlayerColour;
-
-    //List<NetworkVariableColor32> playerColours  { get; set; } = new List<NetworkVariableColor32>();
-
+    public NetworkVariableFloat playerHealth = new NetworkVariableFloat(100f);
+    public Text playerHealthTextBox;
     
     public NetworkVariableColor32 playerColour = new NetworkVariableColor32(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.ServerOnly, ReadPermission = NetworkVariablePermission.Everyone});
 
@@ -42,6 +35,7 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     public float gravity = 9.8f;
 
     public GameObject[] spawnLocations;
+
 
     public CharacterController characterController;
 
@@ -71,20 +65,17 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
         characterController = GetComponent<CharacterController>();
         lookTransformPoint = transform.Find("visor").transform;
+        playerHealthTextBox.text = "" + playerHealth.Value;
 
         if(IsLocalPlayer)
         {
             enabled = true;
-            //Cursor.lockState = CursorLockMode.Locked;
-            transform.Find("visor").transform.Find("Camera").gameObject.SetActive(true);
-            
-
+            transform.Find("visor").transform.Find("Camera").gameObject.SetActive(true); // visor not moving on clients.
+            transform.Find("Canvas").gameObject.SetActive(true);
         } else
         {
             enabled = false;
-            //Controls.Disable();
-            //var renderColor = transform.Find("body").GetComponent<Renderer>();
-            //renderColor.material.SetColor("_Color", playerColour.Value);
+            
         }
 
         Controls.Player.Move.performed += ctx => SetMovement(ctx.ReadValue<Vector2>());
@@ -96,22 +87,16 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
         Controls.Player.Fire.performed += ctx => SetFire();
         Controls.Player.Fire.canceled += ctx => CancelFire();
  
-        /// TODO: Will generate, new clients do not show with updated colours on existing players / clients. e.g. host doesn't see colours.
-        //SetPlayerColourServerRpc(new Color32((byte)Random.Range(0,255),(byte)Random.Range(0,255),(byte)Random.Range(0,255),1));
         if(IsOwner) {
             SetPlayerColourServerRpc(new Color32((byte)Random.Range(0,255),(byte)Random.Range(0,255),(byte)Random.Range(0,255),1));
-            //playerColour.Value = new Color32((byte)Random.Range(0,255),(byte)Random.Range(0,255),0,1);
         } else {
             var renderColor = transform.Find("body").GetComponent<Renderer>();
             renderColor.material.SetColor("_Color", playerColour.Value);
         }
         
-        /*transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
-        var renderColor = transform.Find("body").GetComponent<Renderer>();
-        renderColor.material.SetColor("_Color", playerColour.Value);
-        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;*/
         
-        RespawnClientRpc(spawnLocations[Random.Range(0,3)].transform.position);
+        
+        RespawnClientRpc();
         //NetworkManager.
 
 
@@ -123,22 +108,12 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     private void SetLook(Vector2 lookVector) => lookInputVector = lookVector;
     private void CancelLook() => lookInputVector = Vector2.zero;
+    
     private void SetFire() {
         //Debug.Log("Fire pressed InputAction");
-        FireServerRpc(NetworkManager.LocalClientId);
+        //FireServerRpc((int)NetworkManager.Singleton.LocalClientId);
 
-        RaycastHit hit;
-        Ray forwardRay = new Ray (transform.position, Vector3.forward);
- 
-        if (Physics.Raycast (forwardRay, out hit, 5.0f)) {
-            Debug.Log("Raycast created " + hit.ToString());
-            if(hit.transform.gameObject.CompareTag("Player")) {
-                Debug.Log("I hit a player");
-            } else {
-
-                Debug.Log("I don't know what I hit");
-            }
-        }
+        ShootServerRpc();
     }
     private void CancelFire() {}
 
@@ -147,6 +122,7 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     private void OnEnable() { 
         playerColour.OnValueChanged += OnPlayerColourChanged;
+        playerHealth.OnValueChanged += OnPlayerHealthChanged;
         //var renderColor = transform.Find("body").GetComponent<Renderer>();
         //renderColor.material.SetColor("_Color", playerColour.Value);
         Controls.Enable();
@@ -157,8 +133,78 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     }
 
     [ServerRpc]
-    void FireServerRpc(ulong firedBy) {
-        //Debug.Log("This is " + NetworkManager.LocalClientId + ". " + firedBy + " told me they have shot.");
+    void ShootServerRpc() {
+        RaycastHit hit;
+        Ray forwardRay = new Ray (transform.position, transform.forward);
+ 
+        if (Physics.Raycast (forwardRay, out hit, 50.0f)) {
+            if(hit.transform.gameObject.CompareTag("Player")) {
+                //hit.transform
+
+                //hit.transform.gameObject.GetComponent<Renderer>().enabled = false;
+                //Renderer r = hit.transform.GetComponent<Renderer>();
+                //r.material.SetColor("_Color", playerColour.Value);
+
+                hit.collider.GetComponentInParent<PlayerMovementFPS_MLAPI>().TakeDamage(50);
+
+                Debug.Log("I hit a player");
+                hit.transform.gameObject.GetComponent<Renderer>().enabled = true;
+            } else {
+
+                Debug.Log("I don't know what I hit");
+            }
+        }
+    }
+
+    [ServerRpc]
+    void FireServerRpc(int firedBy) {
+        if(firedBy > 0) {
+            firedBy--;
+        }
+        Debug.Log("Server is " + NetworkManager.LocalClientId + ". " + firedBy + " told me they have shot.");
+        RaycastHit hit;
+
+        Transform source = NetworkManager.Singleton.ConnectedClientsList[firedBy].PlayerObject.transform;
+        Transform target = NetworkManager.Singleton.ConnectedClientsList[firedBy].PlayerObject.transform;
+
+        Ray forwardRay = new Ray (source.position, source.forward);
+ 
+        if (Physics.Raycast (forwardRay, out hit, 50.0f)) {
+
+            if(hit.transform.gameObject.CompareTag("Player")) {
+                    //hit.transform
+
+                hit.transform.gameObject.GetComponent<Renderer>().enabled = false;
+                Renderer r = hit.transform.GetComponent<Renderer>();
+                r.material.SetColor("_Color", playerColour.Value);
+                Debug.Log("Player " + firedBy + " - " + hit.transform.gameObject.ToString());
+                hit.transform.gameObject.GetComponent<Renderer>().enabled = true;
+
+                //int hitID = (int)hit.transform.GetComponent<NetworkObject>().NetworkManager.LocalClientId;
+
+                //Debug.Log("Player" + hitID + " was hit by " + firedBy);
+
+                // Update all clients
+                
+            } else {
+
+                Debug.Log("I don't know what I hit");
+            }
+        }
+    }
+
+    public void TakeDamage(float damage) {
+        playerHealth.Value -= damage;
+        UpdateUIClientRpc();
+        if(playerHealth.Value <= 0) { // Respawn
+            playerHealth.Value = 100;
+            RespawnClientRpc();
+        }
+    }
+
+    [ClientRpc]
+    void UpdateUIClientRpc() {
+        //playerHealthTextBox.text = "" + playerHealth.Value;
     }
 
     [ClientRpc]
@@ -167,8 +213,19 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     }
 
     [ClientRpc]
-    void HitClientRpc(ulong playerHitId) {
+    void HitClientRpc(int id) {
+    /*    go.GetComponent<Renderer>().enabled = false;
+        Renderer r = go.GetComponent<Renderer>();
+        r.material.SetColor("_Color", playerColour.Value);
+        Debug.Log("Player " + NetworkManager.Singleton.LocalClientId);
+        go.GetComponent<Renderer>().enabled = true;*/
+    }
 
+    private void OnPlayerHealthChanged(float oldValue, float newValue) {
+        if(!IsClient) {
+            return;
+        }
+        playerHealthTextBox.text = "" + playerHealth.Value;
     }
 
     //void OnPlayerColourChanged(Color32 oldColour, Color32 newColour) {
@@ -188,25 +245,26 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     [ServerRpc]
     public void SetPlayerColourServerRpc(Color32 col) {
-        //transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
         playerColour.Value = col;
-        //transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;
     }
 
     [ClientRpc]
-    void RespawnClientRpc(Vector3 position) {
-        /*transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
-        var renderColor = transform.Find("body").GetComponent<Renderer>();
-        renderColor.material.SetColor("_Color", new Color32((byte)Random.Range(0,255), (byte)Random.Range(0,255), (byte)Random.Range(0,255), 1));
-        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;*/
+    void RespawnClientRpc() {
         
-        //var renderColor = transform.Find("body").GetComponent<Renderer>();
-        //renderColor.material.SetColor("_Color", new Color(Random.Range(100,200),Random.Range(0,200),Random.Range(0,155)));
+        //StartCoroutine(RespawnPlayer());
+        Vector3 position = spawnLocations[Random.Range(0,4)].transform.position;
         characterController.enabled = false;
         transform.position = position;
         characterController.enabled = true;
 
+    }
 
+    IEnumerator RespawnPlayer() {
+        Vector3 position = spawnLocations[Random.Range(0,4)].transform.position;
+        yield return new WaitForSeconds(1f);
+        characterController.enabled = false;
+        transform.position = position;
+        characterController.enabled = true;
     }
 
     [ClientRpc]
@@ -238,14 +296,7 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
             return;
         }
     }
-/*
-    void Start() {
-        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = false;
-        var renderColor = transform.Find("body").GetComponent<Renderer>();
-        //renderColor.material.SetColor("_Color", playerColour.Value);
-        transform.Find("body").gameObject.GetComponent<Renderer>().enabled = true;
-    }
-*/
+
     // Update is called once per frame
     void Update()
     {
@@ -289,21 +340,4 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
         }
     }
 
-    public void Disconnect()
-    {
-        if (IsHost) 
-        {
-            NetworkManager.Singleton.StopHost();
-        }
-        else if (IsClient) 
-        {
-            NetworkManager.Singleton.StopClient();
-        }
-        else if (IsServer) 
-        {
-            NetworkManager.Singleton.StopServer();
-        }
-        
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Networking_MLAPI_Menu");
-    }
 }
