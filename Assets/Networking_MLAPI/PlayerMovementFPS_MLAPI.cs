@@ -108,8 +108,6 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     
     private void SetFire() {
         //Debug.Log("Fire pressed InputAction");
-        //FireServerRpc((int)NetworkManager.Singleton.LocalClientId);
-
         ShootServerRpc();
     }
     private void CancelFire() {}
@@ -188,7 +186,7 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
         characterController.enabled = true;
     }
 
-    /* TODO Respaen player on a delay
+    /* TODO Respawn player on a delay
     IEnumerator RespawnPlayer() {
         Vector3 position = spawnLocations[Random.Range(0,4)].transform.position;
         yield return new WaitForSeconds(1f);
