@@ -12,6 +12,7 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
 
     public NetworkVariableFloat playerHealth = new NetworkVariableFloat(100f);
     public Text playerHealthTextBox;
+    public GameObject playerSharedUI;
     
     public NetworkVariableColor32 playerColour = new NetworkVariableColor32(new NetworkVariableSettings {WritePermission = NetworkVariablePermission.ServerOnly, ReadPermission = NetworkVariablePermission.Everyone});
 
@@ -59,6 +60,10 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
         base.NetworkStart();
 
         Debug.Log("ID: " + NetworkManager.Singleton.LocalClientId);
+        //Text t = (Text)playerSharedUI.gameObject.Find("Text");
+        //Text t = playerSharedUI.Find("Text");
+        Text t = playerSharedUI.GetComponentInChildren<Text>();
+        t.text = "Player " + NetworkManager.Singleton.LocalClientId;
 
         spawnLocations = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
@@ -175,6 +180,11 @@ public class PlayerMovementFPS_MLAPI : NetworkBehaviour
     [ServerRpc]
     public void SetPlayerColourServerRpc(Color32 col) {
         playerColour.Value = col;
+
+        // update position of player UI.
+        //if(NetworkManager.Singleton)
+        playerSharedUI.transform.position = new Vector3(1920 / 2, playerSharedUI.transform.position.y, playerSharedUI.transform.position.z);
+
     }
 
     [ClientRpc]
