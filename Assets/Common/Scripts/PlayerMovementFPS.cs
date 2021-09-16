@@ -10,7 +10,6 @@ public class PlayerMovementFPS : MonoBehaviour
     // x for rotate l/r, y for look u/d
     public Vector2 lookInputVector;
 
-    public Transform lookTransformPoint;
 
     // Movement and Look Variables
     public float moveSpeed = 25;
@@ -48,7 +47,7 @@ public class PlayerMovementFPS : MonoBehaviour
         // Set the min and max angles to be able to look vertically
         lookVerticalDirection = Mathf.Clamp(lookVerticalDirection, -maxVerticalLookAngle, maxVerticalLookAngle);
         // Rotate the player to look towards 
-        lookTransformPoint.localRotation = Quaternion.Euler(-lookVerticalDirection, 0, 0);
+        transform.localRotation = Quaternion.Euler(-lookVerticalDirection, 0, 0);
 
 
         Vector3 forward = transform.TransformDirection(Vector3.forward);
