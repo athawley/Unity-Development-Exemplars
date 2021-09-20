@@ -10,6 +10,8 @@ public class PlayerMovementFPS : MonoBehaviour
     // x for rotate l/r, y for look u/d
     public Vector2 lookInputVector;
 
+    public Transform lookTransformPoint;
+
 
     // Movement and Look Variables
     public float moveSpeed = 25;
@@ -26,6 +28,7 @@ public class PlayerMovementFPS : MonoBehaviour
 
     void Start() {
         characterController = GetComponent<CharacterController>();
+        lookTransformPoint = transform.Find("visor").transform;
     }
 
     void OnMove(InputValue iv) {
@@ -39,15 +42,26 @@ public class PlayerMovementFPS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lookRotateDirection += lookInputVector.x;
+        /*lookRotateDirection += lookInputVector.x;
         lookRotateDirection = Mathf.Clamp(lookRotateDirection, -turnSpeed, turnSpeed);
-        transform.Rotate(0, lookRotateDirection * Time.deltaTime, 0);
+        transform.Rotate(0, lookRotateDirection * Time.deltaTime, 0);*/
+
+        if(lookInputVector.x == 0) {
+            //transform.Rotate(0, lookRotateDirection * Time.deltaTime, 0);
+            lookRotateDirection = 0;
+        } else {
+            lookRotateDirection += lookInputVector.x;
+            lookRotateDirection = Mathf.Clamp(lookRotateDirection, -turnSpeed, turnSpeed);
+            transform.Rotate(0, lookRotateDirection, 0);
+        }
+
         // The longer looking in a direction the greater the value move in that direction
         lookVerticalDirection += lookInputVector.y;
         // Set the min and max angles to be able to look vertically
         lookVerticalDirection = Mathf.Clamp(lookVerticalDirection, -maxVerticalLookAngle, maxVerticalLookAngle);
         // Rotate the player to look towards 
-        transform.localRotation = Quaternion.Euler(-lookVerticalDirection, 0, 0);
+        //transform.localRotation = Quaternion.Euler(-lookVerticalDirection, 0, 0);
+        lookTransformPoint.localRotation = Quaternion.Euler(-lookVerticalDirection, 0, 0);
 
 
         Vector3 forward = transform.TransformDirection(Vector3.forward);
