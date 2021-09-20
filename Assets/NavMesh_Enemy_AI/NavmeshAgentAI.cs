@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class NavmeshAgentAI : MonoBehaviour
 {
     public Transform[] goals;
@@ -21,13 +22,17 @@ public class NavmeshAgentAI : MonoBehaviour
     {
 
         float distance = Vector3.Distance(transform.position, agent.destination);
-        Debug.Log(distance);
+        //Debug.Log(distance);
 
         if(distance < agent.stoppingDistance + 2) {
-            curGoal = curGoal + 1;
+            /*curGoal = curGoal + 1;
             if(curGoal >= goals.Length) {
                 curGoal = 0;
-            }
+            }*/
+
+            System.Random rnd = new System.Random();
+            curGoal = rnd.Next(0,4);
+
             Debug.Log(curGoal);
             agent.destination = goals[curGoal].position;
         }
