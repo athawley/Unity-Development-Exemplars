@@ -5,22 +5,9 @@ using UnityEngine;
 public class RayCastEnemySeen : MonoBehaviour
 {
     private bool Key;
- 
     public Camera camera;
-
     public Color highlightedColor;
     GameObject enemy;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //camera = GetComponent<Camera>();
-
-        // Not line below as this is the palyers colour
-        //defaultColour = GetComponent<Renderer>().material.color;
-        //Debug.Log(defaultColour.ToString());
-    }
 
     void RayCastChangeColorOnHit() {
         RaycastHit hit;
