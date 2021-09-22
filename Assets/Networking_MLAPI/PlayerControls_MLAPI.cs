@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Networking_MLAPI/PlayerControlsMLAPI.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Networking_MLAPI/PlayerControls_MLAPI.inputactions'
 
 using System;
 using System.Collections;
@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @PlayerControlsMLAPI : IInputActionCollection, IDisposable
+public class @PlayerControls_MLAPI : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @PlayerControlsMLAPI()
+    public @PlayerControls_MLAPI()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""PlayerControlsMLAPI"",
+    ""name"": ""PlayerControls_MLAPI"",
     ""maps"": [
         {
             ""name"": ""Player"",
@@ -907,8 +907,8 @@ public class @PlayerControlsMLAPI : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Fire;
     public struct PlayerActions
     {
-        private @PlayerControlsMLAPI m_Wrapper;
-        public PlayerActions(@PlayerControlsMLAPI wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControls_MLAPI m_Wrapper;
+        public PlayerActions(@PlayerControls_MLAPI wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
@@ -963,8 +963,8 @@ public class @PlayerControlsMLAPI : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     public struct UIActions
     {
-        private @PlayerControlsMLAPI m_Wrapper;
-        public UIActions(@PlayerControlsMLAPI wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControls_MLAPI m_Wrapper;
+        public UIActions(@PlayerControls_MLAPI wrapper) { m_Wrapper = wrapper; }
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
         public InputAction @Submit => m_Wrapper.m_UI_Submit;
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
