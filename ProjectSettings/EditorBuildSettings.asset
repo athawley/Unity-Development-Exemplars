@@ -4,13 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-<<<<<<< Updated upstream
-    path: Assets/RayCastingOnOff/RayCastingHighlighting.unity
-    guid: 486ba48fcede1934198f15be61aab6f1
-=======
-    path: Assets/TextAboveMovingObject/TextAboveMovingObject.unity
-    guid: ae49fa07a34fd9344b5321c43e50b124
->>>>>>> Stashed changes
+  m_Scenes: []
   m_configObjects: {}
