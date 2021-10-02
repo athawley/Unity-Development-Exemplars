@@ -5,14 +5,14 @@ using UnityEngine;
 public class RayCastEnemySeen : MonoBehaviour
 {
     private bool Key;
-    public Camera camera;
+    public Camera myCam;
     public Color highlightedColor;
     GameObject enemy;
 
     void RayCastChangeColorOnHit() {
         RaycastHit hit;
         //Ray forwardRay = new Ray (transform.position, transform.forward);
-        Ray forwardRay = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        Ray forwardRay = myCam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
  
         if (Physics.Raycast (forwardRay, out hit, 50.0f)) {
             if(hit.transform.gameObject.CompareTag("Enemy")) {
