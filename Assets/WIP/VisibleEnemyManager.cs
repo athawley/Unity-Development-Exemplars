@@ -38,10 +38,11 @@ public class VisibleEnemyManager : MonoBehaviour
             //Debug.Log(enemy + " target is " + screenPos.y + " pixels from the top");
             
             if(enemyText[i] == null) {
-                //enemyText[i] = new GameObject("myTextGO");
+                
                 enemyText[i] = Instantiate(enemyUIprefab, new Vector3(0,0,0), Quaternion.identity);
-                //Text myText = enemyText[i].AddComponent<Text>();
-                //myText.text = enemies[i].ToString();
+
+                enemyText[i].transform.Find("EnemyText").GetComponent<Text>().text = "" + enemies[i].GetInstanceID();
+                
                 enemyText[i].transform.SetParent(enemyCanvas.transform);
 
             }
