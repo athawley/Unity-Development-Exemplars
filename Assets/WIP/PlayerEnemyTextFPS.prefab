@@ -510,6 +510,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   cam: {fileID: 9081660526726768786}
+  enemyCanvas: {fileID: 7495904812341798374}
+  enemies: []
+  enemyText: []
+  enemyUIprefab: {fileID: 3259991382196348398, guid: f5137bd4df928bf4080c47e1135ca48d, type: 3}
 --- !u!1 &7770103600020473012
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +627,7 @@ GameObject:
   - component: {fileID: 5969629089763633611}
   m_Layer: 0
   m_Name: PlayerEnemyTextFPS
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
