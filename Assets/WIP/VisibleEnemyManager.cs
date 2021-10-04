@@ -34,36 +34,35 @@ public class VisibleEnemyManager : MonoBehaviour
         for(int i = 0; i < enemies.Length; i++) {
             Transform target = enemies[i].transform;
             Vector3 screenPos = cam.WorldToScreenPoint(target.position);
+        
+            if(screenPos.z >=0 && screenPos.x >= 0 && screenPos.x <= Screen.width && screenPos.y >= 0 && screenPos.y <= Screen.height) { //&& screenPos.y > 0 && screenPos.y <= Screen.height) {
+                Debug.Log(enemies[i].GetInstanceID() + " - On Screen x:" + screenPos.x + " : y:" + screenPos.y);
+            
             //Debug.Log(enemy + " target is " + screenPos.x + " pixels from the left");
             //Debug.Log(enemy + " target is " + screenPos.y + " pixels from the top");
             
-            if(enemyText[i] == null) {
-                
-                enemyText[i] = Instantiate(enemyUIprefab, new Vector3(0,0,0), Quaternion.identity);
+                if(enemyText[i] == null) {
+                    
+                    enemyText[i] = Instantiate(enemyUIprefab, new Vector3(0,0,0), Quaternion.identity);
 
-                enemyText[i].transform.Find("EnemyText").GetComponent<Text>().text = "" + enemies[i].GetInstanceID();
-                
-                enemyText[i].transform.SetParent(enemyCanvas.transform);
+                    enemyText[i].transform.Find("EnemyText").GetComponent<Text>().text = "" + enemies[i].ToString();
+                    
+                    enemyText[i].transform.SetParent(enemyCanvas.transform);
 
+                }
+                enemyText[i].active = true;
+                enemyText[i].transform.position = new Vector2(screenPos.x, screenPos.y + 100);
+            } else {
+                if(enemyText[i] == null) return;
+                    
+                Debug.Log(enemies[i].GetInstanceID() + " - Off Screen");
+                enemyText[i].active = false;
+                //Destroy(enemyText[i]);
+                //enemyText[i].transform.position = new Vector2(0,0);
+                }
             }
-            enemyText[i].transform.position = new Vector2(screenPos.x, screenPos.y);
-            //enemyText[i].transform.position = new Vector2(0,0);
-        }
 
-        /*
-        Vector3 screenPos = cam.WorldToScreenPoint(target.position);
-        
-        
-        if(go == null) {
-        go = Instantiate(enemy)
-        go.transform.SetParent(enemyCanvas.transform);
-        Text myText = go.AddComponent<Text>();
-        myText.text = go.ToString();
-        myText.font = new Font("Serif");
-        }
-        
-        go.transform.position = new Vector2(screenPos.x, screenPos.y);
-        */
+ 
         
     }
 }
