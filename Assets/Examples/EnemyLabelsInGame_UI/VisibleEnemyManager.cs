@@ -51,13 +51,13 @@ public class VisibleEnemyManager : MonoBehaviour
                 enemyUI.transform.SetParent(enemyCanvas.transform); // Link it to the display canvas.
 
             }
-            enemyUI.active = true; // Make active, used when object returns to being visible
+            enemyUI.SetActive(true); // Make active, used when object returns to being visible
             enemyUI.transform.position = new Vector2(screenPos.x, screenPos.y + 100); // Position on the canvas.
         } else {
             if(enemyUI == null) return null; // If no UI element skip.
                 
             //Debug.Log(enemy.GetInstanceID() + " - Off Screen"); // Displays if object is off screen
-            enemyUI.active = false; // If off screen do not display
+            enemyUI.SetActive(false); // If off screen do not display
         
         }
         return enemyUI;

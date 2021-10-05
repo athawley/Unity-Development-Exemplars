@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/WIP/SavingUsingPlayerPrefs.unity
-    guid: 00e9b8693ff28514aaa1d023c95e60e6
+    path: Assets/WIP/UpdatePlayerDataUsingJSON.unity
+    guid: 6cab41557286efb4080305cbeddb78e6
   m_configObjects: {}
