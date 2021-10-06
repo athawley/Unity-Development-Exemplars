@@ -41,6 +41,16 @@ public class PlayerMovementTopDownTwinStick : MonoBehaviour
             //Quaternion newRotation = Quaternion.LookRotation(playerDirection, Vector3.up);
             //playerBody.transform.rotation = Quaternion.RotateTowards(playerBody.transform.rotation, newRotation, playerSpeed * Time.deltaTime);
             playerBody.transform.LookAt(playerBody.transform.position + playerLookDirection, Vector3.up);
+        } else {
+            Ray rayMousePointInWorld = Camera.main.ScreenPointToRay(lookDirection);
+            Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+            float rayDistance;
+
+            if(groundPlane.Raycast(rayMousePointInWorld, out rayDistance)) {
+                Vector3 mousePosition = rayMousePointInWorld.GetPoint(rayDistance);
+            
+                playerBody.transform.LookAt(mousePosition);
+            }
         }
  
         //playerBody.transform.rotation = Quaternion.Euler(playerLookDirection);
