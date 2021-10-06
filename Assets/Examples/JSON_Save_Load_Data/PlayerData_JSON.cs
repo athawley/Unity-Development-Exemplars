@@ -14,7 +14,6 @@ public class PlayerData_JSON : MonoBehaviour
         ps.playerName = "Learn ICT Now";
 
         string jsonData = JsonUtility.ToJson(ps);
-
         Debug.Log("JSON: " + jsonData);
         
         File.WriteAllText( Application.persistentDataPath + "/savefile.json" , jsonData );

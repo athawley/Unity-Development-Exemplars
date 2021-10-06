@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/WIP/UpdatePlayerDataUsingJSON.unity
+    path: Assets/Examples/JSON_Save_Load_Data/UpdatePlayerDataUsingJSON.unity
     guid: 6cab41557286efb4080305cbeddb78e6
   m_configObjects: {}
