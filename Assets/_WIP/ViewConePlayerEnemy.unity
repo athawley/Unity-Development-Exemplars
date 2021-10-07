@@ -149,8 +149,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   visibleTargets: []
-  meshRayCount: 0.25
+  meshRayCount: 0.1
   viewMeshFilter: {fileID: 751728383}
+  fovObject: {fileID: 0}
 --- !u!1001 &93064950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1500,7 +1501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6115550327154453763, guid: a524a3c1951e76645a9ab2048394f740, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.19
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 6115550327154453763, guid: a524a3c1951e76645a9ab2048394f740, type: 3}
       propertyPath: m_LocalRotation.w

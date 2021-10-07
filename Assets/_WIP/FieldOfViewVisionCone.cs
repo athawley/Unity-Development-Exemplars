@@ -92,17 +92,17 @@ public class FieldOfViewVisionCone : MonoBehaviour
         List<Vector3> viewPoints = new List<Vector3>();
         for(int i = 0; i <= fovSectionCount; i++) {
             float angle = transform.eulerAngles.y - viewAngle / 2 + fovSectionAngleSize * i;
-            Debug.DrawLine(transform.position, transform.position + DirectionFromAngle(angle, true) * viewDistance, Color.magenta);
+            //Debug.DrawLine(transform.position, transform.position + DirectionFromAngle(angle, true) * viewDistance, Color.magenta);
 
             ViewCastInformation newViewCast = ViewCast(angle);
             viewPoints.Add(newViewCast.point);
 
-            DrawLine(transform.position, newViewCast.point);
+            //DrawLine(transform.position, newViewCast.point);
         }
 
         
 
-        /*
+        
 
         int vertexCount = viewPoints.Count + 1;
         Vector3[] vertices = new Vector3[vertexCount];
@@ -110,10 +110,10 @@ public class FieldOfViewVisionCone : MonoBehaviour
 
         vertices[0] = Vector3.zero;
         for(int i = 0; i < viewPoints.Count - 1; i++) {
-            //vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]);
-            vertices[i + 1] = viewPoints[i];
+            vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]);
+            //vertices[i + 1] = viewPoints[i];
 
-            Debug.Log(i);
+            //Debug.Log(i);
             triangles[i*3] = 0;
             triangles[i*3+1] = i + 1;
             triangles[i*3+2] = i + 2;
@@ -123,7 +123,7 @@ public class FieldOfViewVisionCone : MonoBehaviour
         viewMesh.vertices = vertices;
         viewMesh.triangles = triangles;
         viewMesh.RecalculateNormals();
-        */
+      
     }
 
 
@@ -133,6 +133,8 @@ public class FieldOfViewVisionCone : MonoBehaviour
         RaycastHit hit;
 
         if(Physics.Raycast(transform.position, direction, out hit, viewDistance, obstacleMask)) {
+            return new ViewCastInformation(true, hit.point, hit.distance, globalAngle);
+        } else if(Physics.Raycast(transform.position, direction, out hit, viewDistance, targetMask)) {
             return new ViewCastInformation(true, hit.point, hit.distance, globalAngle);
         } else {
             return new ViewCastInformation(false, transform.position + direction * viewDistance, viewDistance, globalAngle);
