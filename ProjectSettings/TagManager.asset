@@ -13,9 +13,9 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Detectable
+  - Obstacle
+  - Opponent
   - 
   - 
   - 

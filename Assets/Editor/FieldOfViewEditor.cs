@@ -3,33 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor (typeof(VisionCone))]
+[CustomEditor (typeof(FieldOfViewVisionCone))]
 public class FieldOfViewEditor : Editor
 {
 
     void OnSceneGUI()
     {
-        VisionCone viewCone = (VisionCone)target;
+        FieldOfViewVisionCone fovViewCone = (FieldOfViewVisionCone)target;
         Handles.color = Color.red; 
-        Vector3 viewAngleA = viewCone.DirectionFromAngle(-viewCone.viewAngle / 2, false);
-        Vector3 viewAngleB = viewCone.DirectionFromAngle(viewCone.viewAngle / 2, false);
+        Vector3 viewAngleA = fovViewCone.DirectionFromAngle(-fovViewCone.viewAngle / 2, false);
+        Vector3 viewAngleB = fovViewCone.DirectionFromAngle(fovViewCone.viewAngle / 2, false);
 
         Handles.color = Color.red;
-        Handles.DrawWireArc(viewCone.transform.position, Vector3.up, Vector3.forward, 360, viewCone.viewDistance);
+        Handles.DrawWireArc(fovViewCone.transform.position, Vector3.up, Vector3.forward, 360, fovViewCone.viewDistance);
 
         // Left (negative)
         Handles.color = Color.green;
-        Handles.DrawWireArc(viewCone.transform.position, Vector3.up, viewAngleA, viewCone.viewAngle /2, viewCone.viewDistance);
+        Handles.DrawWireArc(fovViewCone.transform.position, Vector3.up, viewAngleA, fovViewCone.viewAngle /2, fovViewCone.viewDistance);
         
-        Handles.DrawLine(viewCone.transform.position, viewCone.transform.position + viewAngleA * viewCone.viewDistance);
+        Handles.DrawLine(fovViewCone.transform.position, fovViewCone.transform.position + viewAngleA * fovViewCone.viewDistance);
 
         // Right (right)
         Handles.color = Color.green; 
-        Handles.DrawWireArc(viewCone.transform.position, Vector3.up, viewAngleB, -viewCone.viewAngle /2, viewCone.viewDistance);
+        Handles.DrawWireArc(fovViewCone.transform.position, Vector3.up, viewAngleB, -fovViewCone.viewAngle /2, fovViewCone.viewDistance);
 
-        Handles.DrawLine(viewCone.transform.position, viewCone.transform.position + viewAngleB * viewCone.viewDistance);
+        Handles.DrawLine(fovViewCone.transform.position, fovViewCone.transform.position + viewAngleB * fovViewCone.viewDistance);
         
-        //Handles.DrawLine(viewCone.transform.position, viewCone.transform.position + viewCone.viewAngle * viewCone.viewDistance);
-        //Handles.DrawLine(viewCone.transform.position, viewCone.transform.position + viewAngleB * viewCone.viewDistance);
+        Handles.color = Color.yellow;
+        foreach(Transform visibleTarget in fovViewCone.visibleTargets) {
+            Handles.DrawLine(fovViewCone.transform.position, visibleTarget.position);
+        }
     }
 }
