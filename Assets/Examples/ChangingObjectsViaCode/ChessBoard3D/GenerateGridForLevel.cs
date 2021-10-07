@@ -19,20 +19,10 @@ public class GenerateGridForLevel : MonoBehaviour
     void Start()
     {
         grid = new GameObject[levels, rows, columns];
-        int solidIndex;
-        if(isEven) {
-            solidIndex = 0;
-        } else {
-            solidIndex = 1;
-        }
-        //this.transform.
-        //GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        
         for(int l = 0; l < levels; l++) {
             for(int r = 0; r < rows; r++) {
                 for(int c = 0; c < columns; c++) {
-
-                    //if((r % 2 == 0 && c % 2 == 0) || (r % 2 == 1 && c % 2 == 1)) {
-                    //if((r % 2 == 0 && c % 2 == 0) || (r % 2 == 1 && c % 2 == 1)) {
                     if((l % 2 == 0 && r % 2 == 0 && c % 2 == 0) || (l % 2 == 0 && r % 2 == 1 && c % 2 == 1) || (l % 2 == 1 && r % 2 == 0 && c % 2 == 1) || (l % 2 == 1 && r % 2 == 1 && c % 2 == 0)) {
                         //grid[l,r,c] = GameObject.CreatePrimitive(PrimitiveType.Plane);
                         grid[l,r,c] = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -46,9 +36,4 @@ public class GenerateGridForLevel : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

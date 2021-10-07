@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class PlayerMovementTopDownTwinStick : MonoBehaviour
 {
     [SerializeField] private float playerSpeed = 5f;
-    [SerializeField] private float gravity = -9.81f;
     
     [SerializeField] private bool isGamepad;
 
