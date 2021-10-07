@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Examples/EnemyAI/NavMesh_Enemy_AI/Navmesh_Enemy_AI.unity
-    guid: 8a102f607c43e0c4fa77bcef649e433a
+    path: Assets/Examples/DetectingOtherObjects/FieldOfView/ViewConePlayerEnemy.unity
+    guid: dc0cc4a9f7b79ba49bb213f38f963c83
   m_configObjects: {}
