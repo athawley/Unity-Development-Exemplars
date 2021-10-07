@@ -23,6 +23,8 @@ public class FieldOfViewVisionCone : MonoBehaviour
 
     public GameObject fovObject;
 
+    public int objectEdgeAccuracyIterator = 5;
+
     
     // Start is called before the first frame update
     void Start()
@@ -90,19 +92,34 @@ public class FieldOfViewVisionCone : MonoBehaviour
         float fovSectionAngleSize = viewAngle / fovSectionCount; // Angle for each fov section
 
         List<Vector3> viewPoints = new List<Vector3>();
+
+        ViewCastInformation oldViewCast = new ViewCastInformation();
+
         for(int i = 0; i <= fovSectionCount; i++) {
             float angle = transform.eulerAngles.y - viewAngle / 2 + fovSectionAngleSize * i;
             //Debug.DrawLine(transform.position, transform.position + DirectionFromAngle(angle, true) * viewDistance, Color.magenta);
 
             ViewCastInformation newViewCast = ViewCast(angle);
+
+            if(i > 0) {
+                if(oldViewCast.hit != newViewCast.hit) {
+                    // Find object edge
+                    EdgeInfo edge = FindObjectEdge(oldViewCast, newViewCast);
+                    if(edge.pointA != Vector3.zero) {
+                        viewPoints.Add(edge.pointA);
+                    }
+                    if(edge.pointB != Vector3.zero) {
+                        viewPoints.Add(edge.pointA);
+                    }
+                }
+            }
+
             viewPoints.Add(newViewCast.point);
 
             //DrawLine(transform.position, newViewCast.point);
+
+            oldViewCast = newViewCast;
         }
-
-        
-
-        
 
         int vertexCount = viewPoints.Count + 1;
         Vector3[] vertices = new Vector3[vertexCount];
@@ -126,6 +143,25 @@ public class FieldOfViewVisionCone : MonoBehaviour
       
     }
 
+    EdgeInfo FindObjectEdge(ViewCastInformation minViewCast, ViewCastInformation maxViewCast) {
+        float minAngle = minViewCast.angle;
+        float maxAngle = maxViewCast.angle;
+        Vector3 minPoint = Vector3.zero;
+        Vector3 maxPoint = Vector3.zero;
+
+        for(int i = 0; i < objectEdgeAccuracyIterator; i++) {
+            float angle = (minAngle + maxAngle) / 2;
+            ViewCastInformation newViewCast = ViewCast(angle);
+            if(newViewCast.hit == minViewCast.hit) {
+                minAngle = angle;
+                minPoint = newViewCast.point;
+            } else {
+                maxAngle = angle;
+                maxPoint = newViewCast.point;
+            }
+        }
+        return new EdgeInfo(minPoint, maxPoint);
+    }
 
 
     ViewCastInformation ViewCast(float globalAngle) {
@@ -160,6 +196,16 @@ public class FieldOfViewVisionCone : MonoBehaviour
             point = _point;
             distance = _distance;
             angle = _angle;
+        }
+    }
+
+    public struct EdgeInfo {
+        public Vector3 pointA;
+        public Vector3 pointB;
+
+        public EdgeInfo(Vector3 _pointA, Vector3 _pointB) {
+            pointA = _pointA;
+            pointB = _pointB;
         }
     }
 }
