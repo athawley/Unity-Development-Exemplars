@@ -168,13 +168,21 @@ public class FieldOfViewVisionCone : MonoBehaviour
         Vector3 direction = DirectionFromAngle(globalAngle, true);
         RaycastHit hit;
 
+        ViewCastInformation hitInfo = new ViewCastInformation(false, transform.position + direction * viewDistance, viewDistance, globalAngle);
+
         if(Physics.Raycast(transform.position, direction, out hit, viewDistance, obstacleMask)) {
-            return new ViewCastInformation(true, hit.point, hit.distance, globalAngle);
-        } else if(Physics.Raycast(transform.position, direction, out hit, viewDistance, targetMask)) {
-            return new ViewCastInformation(true, hit.point, hit.distance, globalAngle);
-        } else {
-            return new ViewCastInformation(false, transform.position + direction * viewDistance, viewDistance, globalAngle);
+            hitInfo = new ViewCastInformation(true, hit.point, hit.distance, globalAngle);
+
         }
+        if(Physics.Raycast(transform.position, direction, out hit, viewDistance, targetMask)) {
+            
+            if(hit.distance <= hitInfo.distance) {
+                hitInfo = new ViewCastInformation(true, hit.point, hit.distance, globalAngle);
+            }
+        }
+        
+        
+        return hitInfo;
     }
 
 
