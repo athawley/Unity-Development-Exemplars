@@ -30,11 +30,14 @@ public class GenerateGridForLevel : MonoBehaviour
         for(int l = 0; l < levels; l++) {
             for(int r = 0; r < rows; r++) {
                 for(int c = 0; c < columns; c++) {
-                    if((r % 2 == 0 && c % 2 == 0) || (r % 2 == 1 && c % 2 == 1)) {
+
+                    //if((r % 2 == 0 && c % 2 == 0) || (r % 2 == 1 && c % 2 == 1)) {
+                    //if((r % 2 == 0 && c % 2 == 0) || (r % 2 == 1 && c % 2 == 1)) {
+                    if((l % 2 == 0 && r % 2 == 0 && c % 2 == 0) || (l % 2 == 0 && r % 2 == 1 && c % 2 == 1) || (l % 2 == 1 && r % 2 == 0 && c % 2 == 1) || (l % 2 == 1 && r % 2 == 1 && c % 2 == 0)) {
                         //grid[l,r,c] = GameObject.CreatePrimitive(PrimitiveType.Plane);
                         grid[l,r,c] = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                        grid[l,r,c].transform.localScale = new Vector3(gridScale,0f,gridScale);
-                        grid[l,r,c].GetComponent<Renderer>().material.color = Color.black;
+                        grid[l,r,c].transform.localScale = new Vector3(gridScale,0.1f,gridScale);
+                        grid[l,r,c].GetComponent<Renderer>().material.color = Color.red;
                         grid[l,r,c].transform.SetPositionAndRotation(new Vector3(gridScale * r,gridScale * l,gridScale * c), Quaternion.identity);
                         grid[l,r,c].transform.SetParent(this.transform);
                     }
