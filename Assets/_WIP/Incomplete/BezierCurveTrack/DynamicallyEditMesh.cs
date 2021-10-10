@@ -13,7 +13,7 @@ public class DynamicallyEditMesh : MonoBehaviour
         for (var i = 0; i < vertices.Length; i++)
         {
             Debug.Log(vertices[i]);
-            vertices[i] = vertices[i] * Random.RandomRange(0.01f,1f);
+            vertices[i] = vertices[i] * Random.Range(0.01f,1f);
         }
         mesh.vertices = vertices;
         mesh.RecalculateBounds();
