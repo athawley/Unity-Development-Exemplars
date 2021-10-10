@@ -29,8 +29,10 @@ public class CharacterActions : MonoBehaviour
          // When you press the Key
          canShoot = false;
 
-         GameObject _bullet = Instantiate(bullet, transform.position, Quaternion.identity);
-         bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 100 );
+         GameObject _bullet = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
+         //Physics.IgnoreCollision(_bullet.GetComponent<Collider>(), GetComponent<Collider>());
+
+         bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 100 );
 
          StartCoroutine(ShootDelay());
          IEnumerator ShootDelay()
@@ -38,7 +40,7 @@ public class CharacterActions : MonoBehaviour
                
                yield return new WaitForSeconds(bulletdelay);
                canShoot = true;
-               Destroy(_bullet);
+               //Destroy(_bullet);
          }
 
          // Delay in shooting setup now shoot bullet
