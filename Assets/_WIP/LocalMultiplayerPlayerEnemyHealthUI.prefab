@@ -474,7 +474,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4573915797433702739}
-  - component: {fileID: 5682550179870832979}
   - component: {fileID: 4369160443868625705}
   m_Layer: 0
   m_Name: VisibleEnemyManager
@@ -497,23 +496,6 @@ Transform:
   m_Father: {fileID: 2206724157968692236}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5682550179870832979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6498541344741680447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbc612b54441e284093691eecb544e98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 9081660526726768786}
-  enemyCanvas: {fileID: 7495904812341798374}
-  enemies: []
-  enemyUIForPlayer: []
-  enemyUIprefab: {fileID: 3259991382196348398, guid: f5137bd4df928bf4080c47e1135ca48d, type: 3}
 --- !u!114 &4369160443868625705
 MonoBehaviour:
   m_ObjectHideFlags: 0

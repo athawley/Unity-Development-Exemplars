@@ -21,7 +21,6 @@ public class PlayerShooting : MonoBehaviour
         Debug.Log("Fire Pressed");
         CharacterActions ca;
         if(TryGetComponent<CharacterActions>(out ca)) {
-            ca.TakeDamage(10);
             ca.Shoot();
         }
     }
