@@ -21,6 +21,10 @@ public class CharacterActions : MonoBehaviour
 
    public void TakeDamage(int damage) {
       health = health - damage;
+      if(health <= 0) {
+         
+         Destroy(gameObject); // TODO: Sometimes respawns player when opponent dies
+      }
    }
  
    public void Shoot()
@@ -32,7 +36,7 @@ public class CharacterActions : MonoBehaviour
          GameObject _bullet = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
          //Physics.IgnoreCollision(_bullet.GetComponent<Collider>(), GetComponent<Collider>());
 
-         _bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 100 );
+         _bullet.GetComponent<Rigidbody>().AddForce(transform.forward * _bullet.GetComponent<ProjectileStats>().speed );
 
          StartCoroutine(ShootDelay());
          IEnumerator ShootDelay()
@@ -46,6 +50,14 @@ public class CharacterActions : MonoBehaviour
          // Delay in shooting setup now shoot bullet
          
         
+      }
+   }
+
+   void OnTriggerEnter(Collider other) {
+      if(other.CompareTag("Projectile")) {
+         Debug.Log("Hit: " + gameObject.ToString());
+         TakeDamage(other.gameObject.GetComponent<ProjectileStats>().damage);
+         Destroy(other.gameObject);
       }
    }
 }
