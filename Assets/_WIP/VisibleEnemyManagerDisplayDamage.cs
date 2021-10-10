@@ -26,8 +26,8 @@ public class VisibleEnemyManagerDisplayDamage : MonoBehaviour
         bool totalEnemiesChanged = false;
         for(int i = 0; i < enemies.Length; i++) {
             if(enemies[i] == null) {
-                Destroy(enemyUIForPlayer[i]);
-                enemyUIForPlayer[i] = null;
+                //Destroy(enemyUIForPlayer[i]);
+                //enemyUIForPlayer[i] = null;
                 totalEnemiesChanged = true;
                 continue;
             }
@@ -36,6 +36,9 @@ public class VisibleEnemyManagerDisplayDamage : MonoBehaviour
         }
         if(totalEnemiesChanged) {
             enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Get array of all objects tagged with Enemy
+            for(int i = 0; i < enemyUIForPlayer.Length; i++) {
+                Destroy(enemyUIForPlayer[i]);
+            }
             enemyUIForPlayer = new GameObject[enemies.Length]; // Get UI array to number of enemy objects
         }
     }
