@@ -32,7 +32,7 @@ public class CharacterActions : MonoBehaviour
          GameObject _bullet = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
          //Physics.IgnoreCollision(_bullet.GetComponent<Collider>(), GetComponent<Collider>());
 
-         bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 100 );
+         _bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 100 );
 
          StartCoroutine(ShootDelay());
          IEnumerator ShootDelay()
