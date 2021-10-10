@@ -593,7 +593,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 9206537107085336250, guid: 4a0e1b54093036547bbd3ce0eca5f71e, type: 3}
+  m_PlayerPrefab: {fileID: 9206537107085336250, guid: cd47ab28b30cac24a8e4851110afeb17, type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a25419b0fbbfe148851ade5b1e4e108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 75
   canShoot: 1
   bulletdelay: 1
   bullet: {fileID: 2570011756941109408, guid: 8cff353ca1f50b84195e5cf79db93066, type: 3}
@@ -763,6 +763,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3edcb3ba0f913fe428b60c166a2c56d5, type: 2}
+    - target: {fileID: 6636361520285399440, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6640495244154078992, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
