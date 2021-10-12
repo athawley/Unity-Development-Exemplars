@@ -27,8 +27,8 @@ public class DetectEnemyInRange : MonoBehaviour
             //hitCollider.SendMessage("In Range");
 
             if(hitCollider.CompareTag("Enemy")) {
-                Debug.Log("In range: " + hitCollider.gameObject.ToString());
-                
+                //Debug.Log("In range: " + hitCollider.gameObject.ToString());
+                transform.LookAt(hitCollider.transform, Vector3.up); // Face object inside the detectable area.
             }
         }
     }

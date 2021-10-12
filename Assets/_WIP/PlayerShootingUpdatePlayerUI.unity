@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a25419b0fbbfe148851ade5b1e4e108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 75
+  health: 100
   canShoot: 1
   bulletdelay: 1
   bullet: {fileID: 2570011756941109408, guid: 8cff353ca1f50b84195e5cf79db93066, type: 3}

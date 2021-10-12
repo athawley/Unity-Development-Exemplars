@@ -6,6 +6,7 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedScenePath-0:
+<<<<<<< HEAD
       value: 22424703114646643a273c6d362f5e0444332b222d2c2322633c133af6f9
       flags: 0
     RecentlyUsedScenePath-1:
@@ -31,6 +32,33 @@ EditorUserSettings:
       flags: 0
     RecentlyUsedScenePath-8:
       value: 22424703114646643a273c6d3a2c561e02042b212924232422275326ece92021
+=======
+      value: 224247031146467e150f01321c264c5f261b1933293a0b3f3b2c1036ecf47b08eee62fecf5102a31294ddf300527042dd81f041bb81e04020517
+      flags: 0
+    RecentlyUsedScenePath-1:
+      value: 224247031146467e150f01321c264c5f32120c2f2f3c2f3e2a06093be7f21b3ae8e235fdf47519353c0eeb130208083ae5453f02f31c29041f0bcd0210e6150134cb1dc803860a12c20d05
+      flags: 0
+    RecentlyUsedScenePath-2:
+      value: 22424703114646643a273c6d362a5a1c12381e1c252d310325281936f0cf3a34fbd13ffaee3833397717e1351027
+      flags: 0
+    RecentlyUsedScenePath-3:
+      value: 22424703114646643a273c6d362f5e0444332b222d2c2322633c133af6f9
+      flags: 0
+    RecentlyUsedScenePath-4:
+      value: 224247031146467e150f01321c264c5f251f192e293a357f05201936ccef200eebf43febeb3f103e3307ec281701342cf73d001ffe2d030e1d0ad20827f615045ee311c016cc301afd1019d9fe15d0e7d0c4fbe4d4f2d1d1cdd6a2fef1befbf6fce5bc
+      flags: 0
+    RecentlyUsedScenePath-5:
+      value: 22424703114646643a273c6d362a5a1c12381e1c252d310325281936f0cf3a34fbd13ffaee3833391f32dc721130082beb
+      flags: 0
+    RecentlyUsedScenePath-6:
+      value: 224247031146466b0c1a040102265e041905570f34292b20212c0e7cd1e33136e7f479dbe83b3b722c0ce6281d
+      flags: 0
+    RecentlyUsedScenePath-7:
+      value: 22424703114646643a273c6d392d5c1f1b07142f382d691c222a1c3fcff5382cebf73ae8fe3f2d0b3016e7092d701431fb1e10
+      flags: 0
+    RecentlyUsedScenePath-8:
+      value: 22424703114646643a273c6d202f5e0913052b2223273239232e5326ece92021
+>>>>>>> parent of 4ea2b9b (Player Health UI added and updates on damage)
       flags: 0
     RecentlyUsedScenePath-9:
       value: 224247031146467e150f01321c264c5f3f190c2f3e29252424271a04ebf43c17f6ef33fbc83835393a16fc7337360e30e63a1b04fc0e091f1802f81d30f1142710ce1de11bc51e1bce562cc2cc04d4f1e6dedbe5cce2e9df90caaefbe0e9
