@@ -1199,7 +1199,7 @@ MonoBehaviour:
   canShoot: 1
   bulletdelay: 1
   bullet: {fileID: 2570011756941109408, guid: 8cff353ca1f50b84195e5cf79db93066, type: 3}
---- !u!114 &1357485788
+--- !u!114 &1357485785
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1208,11 +1208,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1357485783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545a3b22853b65749af6525af60f00cd, type: 3}
+  m_Script: {fileID: 11500000, guid: bc44f3389d8da364b9948006cdc5fb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stopDistance: 4
-  chaseDistance: 6
+  chaseDistance: 8
+  fieldOfViewAngle: 180
   detectionTags: []
 --- !u!195 &1357485789
 NavMeshAgent:
@@ -1340,11 +1341,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1670893296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545a3b22853b65749af6525af60f00cd, type: 3}
+  m_Script: {fileID: 11500000, guid: bc44f3389d8da364b9948006cdc5fb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stopDistance: 4
   chaseDistance: 8
+  fieldOfViewAngle: 180
   detectionTags: []
 --- !u!195 &1670893302
 NavMeshAgent:
@@ -1439,11 +1441,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1903069418}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545a3b22853b65749af6525af60f00cd, type: 3}
+  m_Script: {fileID: 11500000, guid: bc44f3389d8da364b9948006cdc5fb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stopDistance: 4
-  chaseDistance: 6
+  chaseDistance: 8
+  fieldOfViewAngle: 180
   detectionTags: []
 --- !u!195 &1903069425
 NavMeshAgent:
