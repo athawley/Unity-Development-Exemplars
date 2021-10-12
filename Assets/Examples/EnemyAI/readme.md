@@ -7,4 +7,4 @@ For example the following examples build from one another:
 1. ShootEnemyInFront
 1. LineOfSiteBlocked
 
- ![](2021-10-13-12-04-19.png)
+ ![](EnemyAI.png)
