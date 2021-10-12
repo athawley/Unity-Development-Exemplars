@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Examples/Animation/BasicRagDoll.meta
 guid: 5c3a75a1f2ac88f44a638d6522d89034
+=======
+guid: e95f52ba7ef6ac34ead1c18336f2eaa0
+>>>>>>> parent of 4ea2b9b (Player Health UI added and updates on damage):Assets/Examples/DetectingOtherObjects.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
