@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -543,6 +543,21 @@ MonoBehaviour:
   canShoot: 1
   bulletdelay: 1
   bullet: {fileID: 2570011756941109408, guid: 8cff353ca1f50b84195e5cf79db93066, type: 3}
+--- !u!114 &1357485788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357485783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8569e409bf7dfac429ba0390a0e8ad90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopDistance: 1
+  chaseDistance: 4
+  detectionTags: []
 --- !u!1 &1496596060
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +653,21 @@ MonoBehaviour:
   canShoot: 1
   bulletdelay: 1
   bullet: {fileID: 2570011756941109408, guid: 8cff353ca1f50b84195e5cf79db93066, type: 3}
+--- !u!114 &1670893301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670893296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8569e409bf7dfac429ba0390a0e8ad90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopDistance: 1
+  chaseDistance: 4
+  detectionTags: []
 --- !u!1 &1903069418 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 750804808834371089, guid: 556bf99bbcf75484a9e7ee6fcaa9a7f2, type: 3}
@@ -700,6 +730,21 @@ MonoBehaviour:
   canShoot: 1
   bulletdelay: 1
   bullet: {fileID: 2570011756941109408, guid: 8cff353ca1f50b84195e5cf79db93066, type: 3}
+--- !u!114 &1903069424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903069418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8569e409bf7dfac429ba0390a0e8ad90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopDistance: 1
+  chaseDistance: 4
+  detectionTags: []
 --- !u!1001 &3342799525341078286
 PrefabInstance:
   m_ObjectHideFlags: 0
