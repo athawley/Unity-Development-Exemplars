@@ -128,6 +128,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2360820746350833574, guid: 24a3f066fdbdffb419f5851280cf8ab5, type: 3}
   m_PrefabInstance: {fileID: 657737122}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &95499514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95499513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2c4414239f1704ebeffd26a5790a5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotate: 0
+  movement: {x: 0, y: 0}
+  playerSpeed: 5
 --- !u!195 &95499521
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -379,7 +394,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: da0b97059cf2e3c4d805bfe5a5ec8ccd, type: 2}
+  - {fileID: 2100000, guid: abb76a419139c074f93c1ac96ad3c500, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -852,7 +867,8 @@ PrefabInstance:
       propertyPath: m_StepOffset
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1706406923490506443, guid: 24a3f066fdbdffb419f5851280cf8ab5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 24a3f066fdbdffb419f5851280cf8ab5, type: 3}
 --- !u!43 &770432369
 Mesh:
@@ -1511,7 +1527,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-18632
+  m_Name: pb_Mesh-50380
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3769,7 +3785,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-25826
+  m_Name: pb_Mesh-50416
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
