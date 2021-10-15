@@ -31,6 +31,6 @@ public class DefaultPlayerMovementCC : MonoBehaviour
     void OnLook(InputValue iv) {
         rotate = iv.Get<Vector2>().x;
 
-        Debug.Log(rotate);
+        //Debug.Log(rotate);
     }
 }
