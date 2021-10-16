@@ -20,12 +20,12 @@ public class JoinPlayer : MonoBehaviour
         
     }
 
-    void OnPlayerJoined() {
+    /*void OnPlayerJoined() {
         Debug.Log("Hey a player joined");
         //PlayerInput joinedPlayer = pim.JoinPlayer();
         //Debug.Log(pim.ToString());
         //joinedPlayer.transform.SetPositionAndRotation(new Vector3(0,5,-15), Quaternion.identity);
-    }
+    }*/
 
     public void FirstJoinButtonClicked() {
         Debug.Log("First join button clicked");
@@ -33,11 +33,13 @@ public class JoinPlayer : MonoBehaviour
         // Disable the initial game canvas
         startCanvas.gameObject.SetActive(false);
 
+        pim.EnableJoining();
+
         // Add a player
-        PlayerInput joinedPlayer = pim.JoinPlayer();
+        //PlayerInput joinedPlayer = pim.JoinPlayer();
 
         // Move player
-        joinedPlayer.transform.SetPositionAndRotation(new Vector3(0,5,-15), Quaternion.identity);
+        //joinedPlayer.transform.SetPositionAndRotation(new Vector3(0,5,-15), Quaternion.identity);
 
         // Set active component of canvas.
         
