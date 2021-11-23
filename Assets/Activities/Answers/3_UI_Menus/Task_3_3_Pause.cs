@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Task_3_3_Pause : MonoBehaviour
 {
-    bool paused = false;
+
     PlayerInput playerInput;
     [SerializeField] Canvas pauseMenu;
 
