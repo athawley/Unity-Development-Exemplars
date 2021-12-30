@@ -15,12 +15,15 @@ public class PlayerMoveFreeLook : MonoBehaviour
    public float MinVerticalLookAngle = 0.0f;
    private float _lookVerticalDirection = 0; // Where the character is looking
 
-   [SerializeField] Camera _currentCamera;
+   private Transform _cameraTransform;
+
+   
 
    // Start is called before the first frame update
    void Start()
    {
       _cc = GetComponent<CharacterController>();
+      _cameraTransform = Camera.main.transform;
    }
 
    // Update is called once per frame
@@ -28,49 +31,29 @@ public class PlayerMoveFreeLook : MonoBehaviour
    {
       MovePlayer();
       RotatePlayer();
-      VerticalLook();
+      //VerticalLook();
    }
 
    void MovePlayer() {
 
-      Vector3 forward = transform.TransformDirection(Vector3.forward);
-      Vector3 right = transform.TransformDirection(Vector3.right);
-      float curSpeed = PlayerSpeed * _movement.y * Time.deltaTime;
-      float strafeSpeed = PlayerSpeed * _movement.x * Time.deltaTime;
-      _cc.Move(forward * curSpeed + right * strafeSpeed);
+      Vector3 movement = new Vector3(_movement.x, 0.0f, _movement.y);
+      
+      movement = _cameraTransform.forward * movement.z + _cameraTransform.right * movement.x;
+      movement.y = 0.0f;
+      
+      _cc.Move(movement * Time.deltaTime * PlayerSpeed);
 
       _cc.Move(Physics.gravity * Time.deltaTime);
    }
 
    void RotatePlayer() {
-      transform.Rotate(Vector3.up * _rotate * RotationSpeed * Time.deltaTime);
+      //transform.Rotate(Vector3.up * _rotate * RotationSpeed * Time.deltaTime);
+      float playerTargetAngle = Mathf.Atan2(_movement.x, _movement.y) * Mathf.Rad2Deg + _cameraTransform.eulerAngles.y;
+      Quaternion playerRotation = Quaternion.Euler(0.0f, playerTargetAngle, 0.0f);
+      transform.rotation = Quaternion.Lerp(transform.rotation, playerRotation, Time.deltaTime * RotationSpeed);
    }
 
-   void VerticalLook() {
-      // Quaternion.LookRotation(transform.forward, transform.up);
-      // float yLookPos = Mathf.Clamp(_verticalLook, 0, MaxVerticalLookAngle);
-      // _currentCamera.transform.RotateAround(transform.position, transform.right, yLookPos);
- 
-      //_lookVerticalDirection += _verticalLook;
-
-      //_lookVerticalDirection = Mathf.Clamp(_lookVerticalDirection, -MaxVerticalLookAngle, MaxVerticalLookAngle);
-        // Rotate the player to look towards 
-        //transform.localRotation = Quaternion.Euler(-lookVerticalDirection, 0, 0);
-      //transform.localRotation = Quaternion.Euler(-_lookVerticalDirection, 0, 0);
-      //_currentCamera.transform.RotateAround(transform.position, transform.right, _lookVerticalDirection);
-
-      //_lookVerticalDirection = Mathf.Clamp(_verticalLook, -MaxVerticalLookAngle, MaxVerticalLookAngle);
-      //float eulerAngle = Quaternion.Euler()
-      
-      float viewRangeDegrees = Mathf.Clamp(_currentCamera.transform.localEulerAngles.x + _verticalLook, MinVerticalLookAngle, MaxVerticalLookAngle);
-      Debug.Log(viewRangeDegrees);
-      if(viewRangeDegrees >= MinVerticalLookAngle && viewRangeDegrees <= MaxVerticalLookAngle) {
-         _currentCamera.transform.RotateAround(transform.position, transform.right, _verticalLook);
-      }
-      
-      
-   }
-
+   
    void OnMove(InputValue iv) {
       _movement = iv.Get<Vector2>();
    }
