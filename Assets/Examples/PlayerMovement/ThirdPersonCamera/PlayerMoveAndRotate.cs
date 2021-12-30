@@ -6,8 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerMoveAndRotate : MonoBehaviour
 {
     private float _rotate;
-    private Vector2 _movement;
+    private Vector2 _movementInput;
     private CharacterController _cc;
+
     public float PlayerSpeed = 5;
     public float RotationSpeed = 75;
 
@@ -15,6 +16,14 @@ public class PlayerMoveAndRotate : MonoBehaviour
     void Start()
     {
         _cc = GetComponent<CharacterController>();
+    }
+
+    void OnMove(InputValue iv) {
+        _movementInput = iv.Get<Vector2>();
+    }
+
+    void OnLook(InputValue iv) {
+        _rotate = iv.Get<Vector2>().x;
     }
 
     // Update is called once per frame
@@ -25,25 +34,16 @@ public class PlayerMoveAndRotate : MonoBehaviour
     }
 
     void MovePlayer() {
+        Vector3 movement = new Vector3(_movementInput.x, 0.0f, _movementInput.y);
 
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
-        float curSpeed = PlayerSpeed * _movement.y * Time.deltaTime;
-        float strafeSpeed = PlayerSpeed * _movement.x * Time.deltaTime;
-        _cc.Move(forward * curSpeed + right * strafeSpeed);
+        movement = transform.forward * movement.z + transform.right * movement.x;
+
+        _cc.Move(movement * Time.deltaTime * PlayerSpeed);
 
         _cc.Move(Physics.gravity * Time.deltaTime);
     }
 
     void RotatePlayer() {
         transform.Rotate(Vector3.up * _rotate * RotationSpeed * Time.deltaTime);
-    }
-
-    void OnMove(InputValue iv) {
-        _movement = iv.Get<Vector2>();
-    }
-
-    void OnLook(InputValue iv) {
-        _rotate = iv.Get<Vector2>().x;
     }
 }
