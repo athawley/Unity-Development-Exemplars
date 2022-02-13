@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovementCine3rd : MonoBehaviour
+public class PlayerMovementCine3rdLocalMP : MonoBehaviour
 {
    private Vector2 _inputMovement;
    public float gravity = 9.8f;
@@ -17,6 +17,8 @@ public class PlayerMovementCine3rd : MonoBehaviour
    public Transform _mainCameraTransform;
 
    public float TurnSmoothTime = 0.1f;
+
+   public Cinemachine.CinemachineInputProvider CinemachineInputProvider;
    float _turnSmoothVelocity;
 
    bool _sprinting = false;
@@ -24,6 +26,7 @@ public class PlayerMovementCine3rd : MonoBehaviour
    void Start() {
       _cc = GetComponent<CharacterController>();
       //_mainCameraTransform = Camera.main.transform;
+      //CinemachineInputProvider.PlayerIndex = PlayerInput.
    }
 
    void OnMove(InputValue iv) {
