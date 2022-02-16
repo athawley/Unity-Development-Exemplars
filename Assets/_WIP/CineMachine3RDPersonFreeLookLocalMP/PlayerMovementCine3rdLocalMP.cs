@@ -7,32 +7,21 @@ public class PlayerMovementCine3rdLocalMP : MonoBehaviour
 {
    private Vector2 _inputMovement;
    public float gravity = 9.8f;
-
    private CharacterController _cc;
-
    private float _velocity = 0;
-
    public float Speed = 3.0f;
-
    public Transform _mainCameraTransform;
-
    public float TurnSmoothTime = 0.1f;
-
    public Cinemachine.CinemachineInputProvider CinemachineInputProvider;
    float _turnSmoothVelocity;
-
    bool _sprinting = false;
 
    void Start() {
       _cc = GetComponent<CharacterController>();
-      //_mainCameraTransform = Camera.main.transform;
-      //CinemachineInputProvider.PlayerIndex = PlayerInput.
    }
-
    void OnMove(InputValue iv) {
       _inputMovement = iv.Get<Vector2>();
    }
-
    void OnFire() {
       _sprinting = !_sprinting;
       if(_sprinting) {
@@ -41,9 +30,6 @@ public class PlayerMovementCine3rdLocalMP : MonoBehaviour
          Speed = Speed / 2;
       }
    }
-
-
-   // Update is called once per frame
    void Update()
    {
       Vector3 tempMove = new Vector3(_inputMovement.x, 0.0f, _inputMovement.y).normalized;
@@ -55,7 +41,6 @@ public class PlayerMovementCine3rdLocalMP : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             _cc.Move(moveDir.normalized * Speed * Time.deltaTime);
       }
-
       // If on the ground set velocity to 0 as not falling
       if(_cc.isGrounded)
       {
