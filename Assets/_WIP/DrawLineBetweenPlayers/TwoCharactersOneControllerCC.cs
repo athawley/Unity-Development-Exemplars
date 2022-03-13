@@ -80,6 +80,7 @@ public class TwoCharactersOneControllerCC : MonoBehaviour
     void OnConnectPlayers() {
         if(!line.gameObject.activeSelf && lineCanFire) {
             line.gameObject.SetActive(true);
+            lineCanFire = false;
             StartCoroutine(Cooldown(1f, 5, "line"));
         }
     }

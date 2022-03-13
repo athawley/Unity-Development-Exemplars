@@ -19,8 +19,8 @@ public class DrawLine : MonoBehaviour
     void Start()
     {
         // set the color of the line
-        LineRenderer.startColor = Color.red;
-        LineRenderer.endColor = Color.red;
+        //LineRenderer.startColor = Color.red;
+        //LineRenderer.endColor = Color.red;
  
         // set width of the renderer
         LineRenderer.startWidth = .25f;
