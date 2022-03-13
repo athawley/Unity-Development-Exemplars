@@ -1025,7 +1025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 51132b71e09b77a4eb7cbe5e20241d86, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 3564cb5160e2c1a4b88989f43b93fad8, type: 3}
   m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -1060,6 +1060,7 @@ MonoBehaviour:
   movementBeta: {x: 0, y: 0}
   playerAlphaCC: {fileID: 1931246446860895526}
   playerBetaCC: {fileID: 2329785930324114727}
+  line: {fileID: 4727408006765393277}
   playerSpeed: 5
 --- !u!114 &823289752648428423
 MonoBehaviour:
@@ -1076,6 +1077,7 @@ MonoBehaviour:
   LineRenderer: {fileID: 4727408006765393277}
   TransformOne: {fileID: 9154805348068488621}
   TransformTwo: {fileID: 5532040477009910718}
+  offset: {x: 0, y: 5, z: 0}
 --- !u!1 &6647049898371796609
 GameObject:
   m_ObjectHideFlags: 0
