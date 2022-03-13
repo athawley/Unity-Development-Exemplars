@@ -9,5 +9,6 @@ public class PlayerJoinCameraManager : MonoBehaviour
 
     void OnPlayerJoined(PlayerInput pi) {
         targetGroup.AddMember(pi.gameObject.transform, 3f, 5f);
+        
     }
 }
