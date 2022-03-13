@@ -31,7 +31,7 @@ public class TwoCharactersOneControllerCC : MonoBehaviour
         betaCanSprint = true;
         lineActive = true;
         lineCanFire = false;
-        StartCoroutine(Cooldown(5, "line"));
+        StartCoroutine(Cooldown(3f, 5, "line"));
     }
 
     // Update is called once per frame
@@ -56,22 +56,22 @@ public class TwoCharactersOneControllerCC : MonoBehaviour
     }
 
     void OnSprintAlpha() {
-        sprintAlpha = !sprintAlpha;
-        if(sprintAlpha) {
+        //sprintAlpha = !sprintAlpha;
+        if(alphaCanSprint) {
             alphaSpeed = alphaSpeed * 2;
             alphaCanSprint = false;
-            StartCoroutine(Cooldown(5, "alpha"));
+            StartCoroutine(Cooldown(1.5f, 5, "alpha"));
         } else {
             //alphaSpeed = alphaSpeed / 2;
         }
     }
     
     void OnSprintBeta() {
-        sprintBeta = !sprintBeta;
-        if(sprintBeta) {
+        //sprintBeta = !sprintBeta;
+        if(betaCanSprint) {
             betaSpeed = betaSpeed * 2;
             betaCanSprint = false;
-            StartCoroutine(Cooldown(5, "beta"));
+            StartCoroutine(Cooldown(1.5f, 5, "beta"));
         } else {
             //betaSpeed = betaSpeed / 2;
         }
@@ -80,13 +80,30 @@ public class TwoCharactersOneControllerCC : MonoBehaviour
     void OnConnectPlayers() {
         if(!line.gameObject.activeSelf && lineCanFire) {
             line.gameObject.SetActive(true);
+            StartCoroutine(Cooldown(1f, 5, "line"));
         }
     }
 
-    IEnumerator Cooldown(float cooldownTime, string type)
+    IEnumerator Cooldown(float duration, float cooldownTime, string type)
     {
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        yield return new WaitForSeconds(duration);
+
+        switch(type) {
+            case "line":
+                line.gameObject.SetActive(false);
+                break;
+            case "alpha":
+                alphaSpeed = alphaSpeed / 2;
+                break;
+            case "beta":
+                betaSpeed = betaSpeed / 2;
+                break;
+            default:
+                break;
+        }
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(cooldownTime);
