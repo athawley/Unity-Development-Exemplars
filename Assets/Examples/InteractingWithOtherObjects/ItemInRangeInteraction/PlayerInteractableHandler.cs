@@ -38,8 +38,8 @@ public class PlayerInteractableHandler : MonoBehaviour
         if(interactableObjectInRange.gameObject.TryGetComponent<InteractableItem>(out script)) {
             if(script.inRange) {
                 Debug.Log("Player detected in range and fire pressed");
-                float xPos = Random.RandomRange(-10,10);
-                float zPos = Random.RandomRange(-10,10);
+                float xPos = Random.Range(-10,10);
+                float zPos = Random.Range(-10,10);
                 Instantiate(interactableItemPrefab, new Vector3(xPos, 0.5f, zPos), Quaternion.identity);
                 Destroy(interactableObjectInRange.gameObject);
             }
