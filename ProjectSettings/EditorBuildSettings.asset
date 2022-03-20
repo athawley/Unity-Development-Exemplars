@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Examples/EnvironmentsAndLighting/Lighting/ObjectLighting.unity
-    guid: 5ebefdaa3fa49924e8606b14399ee9a9
+    path: Assets/Pinball/PinballTableScene.unity
+    guid: c88ece7e72c50634693412a1283f5a52
   m_configObjects: {}
