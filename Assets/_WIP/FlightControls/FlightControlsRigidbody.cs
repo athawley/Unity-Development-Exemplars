@@ -24,8 +24,8 @@ public class FlightControlsRigidbody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //rb.AddRelativeForce(transform.forward * thrust * thrustSpeed * Time.deltaTime,ForceMode.Acceleration);
-        rb.AddRelativeForce(new Vector3(0,0,thrust) * thrustSpeed * Time.deltaTime,ForceMode.Acceleration);
+        rb.AddForce(transform.forward * thrust * thrustSpeed * Time.deltaTime,ForceMode.Impulse);
+        //rb.AddRelativeForce(new Vector3(0,0,thrust) * thrustSpeed * Time.deltaTime,ForceMode.Impulse);
         //transform.position += transform.forward * thrust;
 
         //transform.Rotate(new Vector3(pitch, 0, 0) * 5 * Time.deltaTime, Space.Self);
@@ -36,9 +36,9 @@ public class FlightControlsRigidbody : MonoBehaviour
 
         rb.AddRelativeTorque(new Vector3(pitch, 0, 0).normalized * pitchSpeed * Time.deltaTime,ForceMode.Acceleration);
 
-        rb.AddRelativeTorque(new Vector3(0, 0, -roll) * rollSpeed * Time.deltaTime,ForceMode.Acceleration);
+        rb.AddRelativeTorque(new Vector3(0, 0, -roll).normalized * rollSpeed * Time.deltaTime,ForceMode.Acceleration);
 
-        rb.AddRelativeTorque(new Vector3(0, yaw, 0) * yawSpeed * Time.deltaTime,ForceMode.Acceleration);
+        rb.AddRelativeTorque(new Vector3(0, yaw, 0).normalized * yawSpeed * Time.deltaTime,ForceMode.Acceleration);
 
         
     }
