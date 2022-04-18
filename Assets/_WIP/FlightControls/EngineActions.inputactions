@@ -6,20 +6,22 @@
             "id": "82321885-cfd1-4e11-b3db-791c9a62e4a4",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "ThrustAndRoll",
                     "type": "Value",
                     "id": "e30e264c-332b-4f27-8492-61a23edae9c6",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "Look",
+                    "name": "PitchAndYaw",
                     "type": "Value",
                     "id": "13ed14b5-01c1-45c0-9abf-10a6142ef9a8",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Fire",
@@ -27,23 +29,8 @@
                     "id": "6255648c-e80a-434c-8273-35ebf2201121",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "LeftSpin",
-                    "type": "Button",
-                    "id": "8d9b5bdd-8789-4879-b4a4-865d8292f851",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "RightSpin",
-                    "type": "Button",
-                    "id": "cfb11286-1798-4f6c-9d0c-f6d58634b7b9",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -54,7 +41,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -65,7 +52,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -76,7 +63,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -87,7 +74,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -98,7 +85,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -109,7 +96,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -120,7 +107,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -131,7 +118,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -142,7 +129,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -153,7 +140,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -164,7 +151,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -175,7 +162,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Move",
+                    "action": "ThrustAndRoll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -186,7 +173,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Look",
+                    "action": "PitchAndYaw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -197,7 +184,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse;Touch",
-                    "action": "Look",
+                    "action": "PitchAndYaw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -208,7 +195,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Look",
+                    "action": "PitchAndYaw",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -266,28 +253,6 @@
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "653718a7-7ce4-499f-9cf9-a480802589d4",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "LeftSpin",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ad50b3f4-e6b8-4c89-add1-82daf66e6958",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "RightSpin",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -301,7 +266,8 @@
                     "id": "d378d215-5d9c-4b2e-9a0e-e736616d9270",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Submit",
@@ -309,7 +275,8 @@
                     "id": "a94c38ab-fc0b-4bb0-83b4-8e8028cd4f61",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Cancel",
@@ -317,7 +284,8 @@
                     "id": "a06bd68a-49bc-419f-8e19-cd2f2cab530e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Point",
@@ -325,7 +293,8 @@
                     "id": "60f4868f-7b07-4798-b6fd-a2824caef84f",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Click",
@@ -333,7 +302,8 @@
                     "id": "c509f756-72f7-4400-989f-833e169d175c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "ScrollWheel",
@@ -341,7 +311,8 @@
                     "id": "581a6622-b01d-44f3-aa4f-83495a03be74",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "MiddleClick",
@@ -349,7 +320,8 @@
                     "id": "4f39b6de-6531-41b3-8f8f-d492f834bf57",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "RightClick",
@@ -357,7 +329,8 @@
                     "id": "c2a42da2-7a08-47b9-bfd4-70ae465e527a",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "TrackedDevicePosition",
@@ -365,7 +338,8 @@
                     "id": "bfbdb094-a143-47af-ac17-90ff921a435c",
                     "expectedControlType": "Vector3",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "TrackedDeviceOrientation",
@@ -373,7 +347,8 @@
                     "id": "c781bfac-1121-477b-9220-ddbb80350842",
                     "expectedControlType": "Quaternion",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
