@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5088180635350867547}
-  - component: {fileID: 5277161018900156310}
   - component: {fileID: -1697606602750933736}
   - component: {fileID: -2847869797636572178}
   m_Layer: 0
-  m_Name: Ship
+  m_Name: ShipNoPhysics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,22 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &5277161018900156310
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2555197973864876099}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &-1697606602750933736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082b696459999ba41a8d408b0687ecbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrust: 0
+  roll: 0
+  pitch: 0
+  yaw: 0
 --- !u!1 &2731565925205744240
 GameObject:
   m_ObjectHideFlags: 0
