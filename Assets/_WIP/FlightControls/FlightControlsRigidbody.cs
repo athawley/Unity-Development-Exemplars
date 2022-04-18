@@ -24,7 +24,8 @@ public class FlightControlsRigidbody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(transform.forward * thrust * thrustSpeed * Time.deltaTime,ForceMode.Acceleration);
+        //rb.AddRelativeForce(transform.forward * thrust * thrustSpeed * Time.deltaTime,ForceMode.Acceleration);
+        rb.AddRelativeForce(new Vector3(0,0,thrust) * thrustSpeed * Time.deltaTime,ForceMode.Acceleration);
         //transform.position += transform.forward * thrust;
 
         //transform.Rotate(new Vector3(pitch, 0, 0) * 5 * Time.deltaTime, Space.Self);
@@ -33,22 +34,24 @@ public class FlightControlsRigidbody : MonoBehaviour
 
         //transform.Rotate(new Vector3(0, yaw, 0) * 5 * Time.deltaTime, Space.Self);
 
-        rb.AddTorque(new Vector3(pitch, 0, 0) * pitchSpeed * Time.deltaTime,ForceMode.Acceleration);
+        rb.AddRelativeTorque(new Vector3(pitch, 0, 0).normalized * pitchSpeed * Time.deltaTime,ForceMode.Acceleration);
 
-        rb.AddTorque(new Vector3(0, 0, -roll) * rollSpeed * Time.deltaTime,ForceMode.Acceleration);
+        rb.AddRelativeTorque(new Vector3(0, 0, -roll) * rollSpeed * Time.deltaTime,ForceMode.Acceleration);
 
-        rb.AddTorque(new Vector3(0, yaw, 0) * yawSpeed * Time.deltaTime,ForceMode.Acceleration);
+        rb.AddRelativeTorque(new Vector3(0, yaw, 0) * yawSpeed * Time.deltaTime,ForceMode.Acceleration);
+
+        
     }
 
     void OnThrustAndRoll(InputValue iv) {
         Vector2 tempV = iv.Get<Vector2>();
         thrust = tempV.y;
-        roll = tempV.x;
+        yaw = tempV.x;
     }
 
     void OnPitchAndYaw(InputValue iv) {
         Vector2 tempV = iv.Get<Vector2>();
         pitch = tempV.y;
-        yaw = tempV.x;
+        roll = tempV.x;
     }
 }
