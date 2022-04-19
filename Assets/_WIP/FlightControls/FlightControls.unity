@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -315,19 +315,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6085559801214817981, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
       propertyPath: yawSpeed
-      value: 250
+      value: 1250
       objectReference: {fileID: 0}
     - target: {fileID: 6085559801214817981, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
       propertyPath: rollSpeed
-      value: 250
+      value: 1250
       objectReference: {fileID: 0}
     - target: {fileID: 6085559801214817981, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
       propertyPath: pitchSpeed
-      value: 250
+      value: 1250
       objectReference: {fileID: 0}
     - target: {fileID: 6085559801214817981, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
       propertyPath: thrustSpeed
-      value: 250
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 8405018553494511512, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
       propertyPath: m_LocalPosition.x

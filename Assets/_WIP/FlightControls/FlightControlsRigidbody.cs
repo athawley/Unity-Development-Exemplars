@@ -49,7 +49,7 @@ public class FlightControlsRigidbody : MonoBehaviour
         if(thrust != 0) {
             float currentThrust = thrust;
             //currentThrust = thrustSpeed;
-            rb.AddRelativeForce(Vector3.forward * thrust * thrustSpeed * Time.deltaTime);
+            rb.AddRelativeForce(Vector3.forward * thrust * thrustSpeed * Time.deltaTime, ForceMode.Acceleration);
             glide = thrust;
         } else {
             rb.AddRelativeForce(Vector3.forward * glide * Time.deltaTime);
@@ -67,5 +67,11 @@ public class FlightControlsRigidbody : MonoBehaviour
         Vector2 tempV = iv.Get<Vector2>();
         pitch = tempV.y;
         roll = tempV.x;
+    }
+
+    void OnFire() {
+        // Reset rotation and velocity to 0
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 }
