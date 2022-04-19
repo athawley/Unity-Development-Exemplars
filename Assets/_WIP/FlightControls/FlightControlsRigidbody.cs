@@ -24,7 +24,7 @@ public class FlightControlsRigidbody : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //rb.AddForce(transform.forward * thrust * thrustSpeed * Time.deltaTime,ForceMode.Impulse);
         //rb.AddRelativeForce(new Vector3(0,0,thrust) * thrustSpeed * Time.deltaTime,ForceMode.Impulse);
@@ -43,8 +43,13 @@ public class FlightControlsRigidbody : MonoBehaviour
         //rb.AddRelativeTorque(new Vector3(0, yaw, 0).normalized * yawSpeed * Time.deltaTime,ForceMode.Acceleration);
 
         rb.AddRelativeTorque(Vector3.back * Mathf.Clamp(roll, -1f, 1f) * rollSpeed * Time.deltaTime);
+        
         rb.AddRelativeTorque(Vector3.right * Mathf.Clamp(pitch, -1f, 1f) * pitchSpeed * Time.deltaTime);
+        
         rb.AddRelativeTorque(Vector3.up * Mathf.Clamp(yaw, -1f, 1f) * yawSpeed * Time.deltaTime);
+        //if(roll == 0) {
+            rb.angularVelocity = new Vector3(rb.angularVelocity.x  * 0.95f, rb.angularVelocity.y  * 0.95f, rb.angularVelocity.z  * 0.95f);
+        //}
 
         if(thrust != 0) {
             float currentThrust = thrust;
@@ -52,8 +57,10 @@ public class FlightControlsRigidbody : MonoBehaviour
             rb.AddRelativeForce(Vector3.forward * thrust * thrustSpeed * Time.deltaTime, ForceMode.Acceleration);
             glide = thrust;
         } else {
-            rb.AddRelativeForce(Vector3.forward * glide * Time.deltaTime);
-            glide *= thrustDeccelerationRate;
+            //rb.AddRelativeForce(Vector3.forward * glide * Time.deltaTime);
+            //glide *= thrustDeccelerationRate;
+
+            rb.velocity = rb.velocity * 0.55f * Time.deltaTime;
         }
     }
 
@@ -71,6 +78,11 @@ public class FlightControlsRigidbody : MonoBehaviour
 
     void OnFire() {
         // Reset rotation and velocity to 0
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    void OnTriggerEnter(Collider other) {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
