@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -263,7 +263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4587412213039945809, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4654118196289516978, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
       propertyPath: thisShip
@@ -372,7 +372,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292722415}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0e75cfca6d860944c9b0897972fa1929, type: 2}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 7ba30584027265841a56523cbd3932c3, type: 2}
   m_EnableTreeColliders: 1
