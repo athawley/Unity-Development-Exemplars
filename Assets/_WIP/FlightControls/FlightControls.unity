@@ -314,12 +314,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6085559801214817981, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
+      propertyPath: yawSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6085559801214817981, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
+      propertyPath: rollSpeed
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6085559801214817981, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
       propertyPath: pitchSpeed
-      value: 25
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 6085559801214817981, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
       propertyPath: thrustSpeed
-      value: 50
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 8405018553494511512, guid: b3b7d6e66042b7940bae71052015d08b, type: 3}
       propertyPath: m_LocalPosition.x

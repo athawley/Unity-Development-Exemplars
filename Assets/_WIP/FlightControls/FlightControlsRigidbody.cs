@@ -14,6 +14,8 @@ public class FlightControlsRigidbody : MonoBehaviour
     [SerializeField]
     float thrust, roll, pitch, yaw;
     public float thrustSpeed = 5, rollSpeed = 25, pitchSpeed = 5, yawSpeed = 5;
+    public float glide = 0f;
+    public float thrustDeccelerationRate = 0.5f;
 
     Rigidbody rb;
 
@@ -24,7 +26,7 @@ public class FlightControlsRigidbody : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForce(transform.forward * thrust * thrustSpeed * Time.deltaTime,ForceMode.Impulse);
+        //rb.AddForce(transform.forward * thrust * thrustSpeed * Time.deltaTime,ForceMode.Impulse);
         //rb.AddRelativeForce(new Vector3(0,0,thrust) * thrustSpeed * Time.deltaTime,ForceMode.Impulse);
         //transform.position += transform.forward * thrust;
 
@@ -34,13 +36,25 @@ public class FlightControlsRigidbody : MonoBehaviour
 
         //transform.Rotate(new Vector3(0, yaw, 0) * 5 * Time.deltaTime, Space.Self);
 
-        rb.AddRelativeTorque(new Vector3(pitch, 0, 0).normalized * pitchSpeed * Time.deltaTime,ForceMode.Acceleration);
+        //rb.AddRelativeTorque(new Vector3(pitch, 0, 0).normalized * pitchSpeed * Time.deltaTime,ForceMode.Acceleration);
 
-        rb.AddRelativeTorque(new Vector3(0, 0, -roll).normalized * rollSpeed * Time.deltaTime,ForceMode.Acceleration);
+        //rb.AddRelativeTorque(new Vector3(0, 0, -roll).normalized * rollSpeed * Time.deltaTime,ForceMode.Acceleration);
 
-        rb.AddRelativeTorque(new Vector3(0, yaw, 0).normalized * yawSpeed * Time.deltaTime,ForceMode.Acceleration);
+        //rb.AddRelativeTorque(new Vector3(0, yaw, 0).normalized * yawSpeed * Time.deltaTime,ForceMode.Acceleration);
 
-        
+        rb.AddRelativeTorque(Vector3.back * Mathf.Clamp(roll, -1f, 1f) * rollSpeed * Time.deltaTime);
+        rb.AddRelativeTorque(Vector3.right * Mathf.Clamp(pitch, -1f, 1f) * pitchSpeed * Time.deltaTime);
+        rb.AddRelativeTorque(Vector3.up * Mathf.Clamp(yaw, -1f, 1f) * yawSpeed * Time.deltaTime);
+
+        if(thrust != 0) {
+            float currentThrust = thrust;
+            //currentThrust = thrustSpeed;
+            rb.AddRelativeForce(Vector3.forward * thrust * thrustSpeed * Time.deltaTime);
+            glide = thrust;
+        } else {
+            rb.AddRelativeForce(Vector3.forward * glide * Time.deltaTime);
+            glide *= thrustDeccelerationRate;
+        }
     }
 
     void OnThrustAndRoll(InputValue iv) {
