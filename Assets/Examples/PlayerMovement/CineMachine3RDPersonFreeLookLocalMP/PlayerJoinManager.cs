@@ -9,5 +9,13 @@ public class PlayerJoinManager : MonoBehaviour
     void OnPlayerJoined(PlayerInput pi) {
         Debug.Log("PlayerInput Joined " + pi.playerIndex);
         pi.gameObject.GetComponent<PlayerMovementCine3rdLocalMP>().CinemachineInputProvider.PlayerIndex = pi.playerIndex;
+
+        // Select colour of player based on player index. (Team)
+        // Even = blue
+        // Odd = Black
+
+        
     }
+
+    
 }
