@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Pinball/PinballTableScene.unity
-    guid: c88ece7e72c50634693412a1283f5a52
+    path: Assets/_WIP/PlayerLobby/MainMenu.unity
+    guid: c19f53af137b8304793a3bf2bce6f375
+  - enabled: 1
+    path: Assets/_WIP/PlayerLobby/PlayerSelect.unity
+    guid: 4b574657b96d27b49b888193ad59f6d9
+  - enabled: 1
+    path: Assets/_WIP/PlayerLobby/GameLobby.unity
+    guid: 0750e3e0a9764b24d8b7819a3ec317bb
+  - enabled: 1
+    path: Assets/_WIP/PlayerLobby/Level_Castle.unity
+    guid: 3af4c095ba6b0d246962c130399a21a7
+  - enabled: 1
+    path: Assets/_WIP/PlayerLobby/Level_Square.unity
+    guid: 43e97a51bde592947affb8dea61cf609
   m_configObjects: {}
