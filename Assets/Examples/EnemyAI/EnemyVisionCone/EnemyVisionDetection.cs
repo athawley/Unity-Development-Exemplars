@@ -5,6 +5,10 @@ using UnityEngine;
 public class EnemyVisionDetection : MonoBehaviour
 {
 
+    public bool trackingPlayer = false;
+    public bool unseenPlayer = true;
+    public Vector3 playerPosition;
+
     Material m_Material;
     [SerializeField]
     Material m_seenMaterial, m_unseenMaterial;
@@ -26,6 +30,8 @@ public class EnemyVisionDetection : MonoBehaviour
     void OnTriggerEnter(Collider col) {
         if(col.CompareTag("Player")) {
             Debug.Log("Player Seen");
+            trackingPlayer = true;
+            playerPosition = col.transform.position;
             m_renderer.material = m_seenMaterial;
         }
     }
@@ -33,6 +39,7 @@ public class EnemyVisionDetection : MonoBehaviour
     void OnTriggerExit(Collider col) {
         if(col.CompareTag("Player")) {
             Debug.Log("Player Ūnseen");
+            trackingPlayer = false;
             m_renderer.material = m_unseenMaterial;
         }
     }
