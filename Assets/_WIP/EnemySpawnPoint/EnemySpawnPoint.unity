@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -362,9 +362,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerFPS
       objectReference: {fileID: 0}
+    - target: {fileID: 7690637989576024836, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7743403103582934316, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
       propertyPath: m_ClearFlags
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743403103582934316, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
+      propertyPath: field of view
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 7743403103582934316, guid: dc9c78584bc1ff846a7f9e34caea7e6c, type: 3}
       propertyPath: m_BackGroundColor.b
@@ -497,6 +505,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2822736910391438343, guid: feb75c53c2b5818479cdebbdd037b749, type: 3}
+      propertyPath: EnemyToSpawn
+      value: 
+      objectReference: {fileID: 8272174855544329258, guid: 669e98aff014dde41948b0ac75599f4a, type: 3}
     - target: {fileID: 7893823529510642540, guid: feb75c53c2b5818479cdebbdd037b749, type: 3}
       propertyPath: m_Name
       value: SpawnTower
@@ -522,10 +534,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3edcb3ba0f913fe428b60c166a2c56d5, type: 2}
+    - target: {fileID: 677764265911532781, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1805754024338497914, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3edcb3ba0f913fe428b60c166a2c56d5, type: 2}
+    - target: {fileID: 2022085624861449890, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2388980826879905787, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
@@ -578,6 +598,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5357836495059024686, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5500924725711505150, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
@@ -586,6 +610,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 3edcb3ba0f913fe428b60c166a2c56d5, type: 2}
+    - target: {fileID: 6636361520285399440, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6640495244154078992, guid: 01355d1eb6b65304c83bb325b2af87fa, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
