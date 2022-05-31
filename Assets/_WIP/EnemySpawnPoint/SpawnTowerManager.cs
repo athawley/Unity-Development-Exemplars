@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SpawnTowerManager : MonoBehaviour
 {   
-    
+
     public Transform SpawnPoint;
     public GameObject EnemyToSpawn;
+
+    public Transform Target;
 
     private IEnumerator spawnTimer;
 
@@ -22,8 +24,10 @@ public class SpawnTowerManager : MonoBehaviour
     {
         while (true)
         {
+            
             yield return new WaitForSeconds(waitTime);
-            Instantiate(EnemyToSpawn, SpawnPoint.position, Quaternion.identity);
+            GameObject enemyGameObject = Instantiate(EnemyToSpawn, SpawnPoint.position, Quaternion.identity);
+            enemyGameObject.GetComponent<EnemyTargetPlayer>().targetPosition = Target;
         }
     }
 }
