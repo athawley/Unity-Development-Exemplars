@@ -21,6 +21,6 @@ public class MeleeWeaponManager : MonoBehaviour
 
     void OnFire() {
         Debug.Log("Attack Pressed");
-        weaponAnimator.SetBool("AttackPressed", true); 
+        weaponAnimator.SetTrigger("AttackPressed");
     }
 }
