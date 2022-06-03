@@ -7,10 +7,17 @@ public class LoadSceneWithinScene : MonoBehaviour
 {
     [SerializeField]
     string _sceneToLoadName;
+    [SerializeField]
+    string _sceneTounloadName;
     
     void OnTriggerEnter(Collider other) {
         Debug.Log("Trigger Entered");
-        SceneManager.LoadScene(_sceneToLoadName, LoadSceneMode.Additive);
+        if(_sceneToLoadName != "") {
+            SceneManager.LoadScene(_sceneToLoadName, LoadSceneMode.Additive);
+        }
+        if(_sceneTounloadName != "") {
+            SceneManager.UnloadSceneAsync(_sceneTounloadName);
+        }
         
     }
 

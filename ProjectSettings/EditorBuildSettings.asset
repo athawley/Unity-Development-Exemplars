@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_WIP/MultipleScenesAtOnce/InitialScene.unity
+    path: Assets/_WIP/MultipleScenesAtOnce/LevelCoreScene.unity
+    guid: 2c26d9390f29a4046b4d39f6aa0d539f
+  - enabled: 1
+    path: Assets/_WIP/MultipleScenesAtOnce/StartSceneOrigin_A.unity
     guid: b1b957f1ee964ed42b3ab2014a6cbb61
   - enabled: 1
-    path: Assets/_WIP/MultipleScenesAtOnce/Hub.unity
+    path: Assets/_WIP/MultipleScenesAtOnce/Hub_A.unity
     guid: b24176992289d7f4186d191d897ed035
+  - enabled: 1
+    path: Assets/_WIP/MultipleScenesAtOnce/Hub_B.unity
+    guid: c235da9c623290f469c2719f9f015eaf
   m_configObjects: {}
