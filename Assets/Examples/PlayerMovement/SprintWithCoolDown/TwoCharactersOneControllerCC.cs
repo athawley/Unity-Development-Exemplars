@@ -31,6 +31,7 @@ public class TwoCharactersOneControllerCC : MonoBehaviour
         betaCanSprint = true;
         lineActive = true;
         lineCanFire = false;
+        Debug.Log("" + sprintAlpha + alphaCanSprint + sprintBeta + betaCanSprint + lineActive + lineCanFire);
         StartCoroutine(Cooldown(3f, 5, "line"));
     }
 
