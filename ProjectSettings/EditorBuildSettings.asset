@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_WIP/TwinStickMovement/TwinStickMovement.unity
-    guid: f2ca677dc158a7d4c8cc91c29233696b
+    path: Assets/Examples/EnemyAI/ShootEnemyInFront/EnemyShootingInRangeAndInFront.unity
+    guid: 9929a89516702494691442997644fc93
   m_configObjects: {}
