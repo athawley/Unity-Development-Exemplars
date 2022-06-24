@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_WIP/LoadingBar/MainMenu.unity
-    guid: a5cfb6e2c09a95e4e8d525b9771fd77f
-  - enabled: 1
-    path: Assets/_WIP/LoadingBar/Level_1.unity
-    guid: fa574b3b7eefaf04885f4a36fe72cd68
+    path: Assets/_WIP/TwinStickMovement/TwinStickMovement.unity
+    guid: f2ca677dc158a7d4c8cc91c29233696b
   m_configObjects: {}
