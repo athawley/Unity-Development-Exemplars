@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using System;
 
 public class LoginManager : MonoBehaviour
 {
+
     [SerializeField]
     private Canvas loginCanvas, successCanvas, failCanvas;
     // Start is called before the first frame update
     [SerializeField]
-    private Text usernameBox, passwordBox;
+    private InputField usernameBox, passwordBox;
 
     private bool success = false;
     void Start()

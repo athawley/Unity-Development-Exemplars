@@ -485,8 +485,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 762656261}
   m_TextComponent: {fileID: 1226390046}
   m_Placeholder: {fileID: 1023154098}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -1669,8 +1669,8 @@ MonoBehaviour:
   loginCanvas: {fileID: 648950700}
   successCanvas: {fileID: 476275323}
   failCanvas: {fileID: 1900243232}
-  usernameBox: {fileID: 1121589900}
-  passwordBox: {fileID: 1226390046}
+  usernameBox: {fileID: 946404540}
+  passwordBox: {fileID: 762656260}
 --- !u!4 &1920700946
 Transform:
   m_ObjectHideFlags: 0
