@@ -1,15 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class LoginManager : MonoBehaviour
 {
     [SerializeField]
     private Canvas loginCanvas, successCanvas, failCanvas;
     // Start is called before the first frame update
+    [SerializeField]
+    private Text usernameBox, passwordBox;
+
+    private bool success = false;
     void Start()
     {
-        
+        // A correct website page.
+        //StartCoroutine(GetRequest("http://gljf.learnictnow.com/login_check.php"));
+
+        // A non-existing page.
+        //StartCoroutine(GetRequest("https://error.html"));
     }
 
     // Update is called once per frame
@@ -18,44 +28,52 @@ public class LoginManager : MonoBehaviour
         
     }
 
-    public void HandleLogin() {
-        bool success = false;
+    IEnumerator GetRequest(string uri)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        {
+            // Request and wait for the desired page.
+            yield return webRequest.SendWebRequest();
 
-        if(success) {
-            loginCanvas.gameObject.SetActive(false);
-            successCanvas.gameObject.SetActive(true);
-        } else {
-            failCanvas.gameObject.SetActive(true);
+            string[] pages = uri.Split('/');
+            int page = pages.Length - 1;
+
+            switch (webRequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.ProtocolError:
+                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                    if(webRequest.downloadHandler.text == "SUCCESS") {
+                        success = true;
+                    } else {
+                        success = false;
+                    }
+                    break;
+            }
+
+            if(success) {
+                loginCanvas.gameObject.SetActive(false);
+                successCanvas.gameObject.SetActive(true);
+            } else {
+                failCanvas.gameObject.SetActive(true);
+            }
         }
     }
 
-    private string formNick = ""; //this is the field where the player will put the name to login
-    private string formPassword = ""; //this is his password
-    string formText = ""; //this field is where the messages sent by PHP script will be in
-    
-    string URL = "http://mywebsite/check_scores.php"; //change for your URL
-    string hash = "hashcode"; //change your secret code, and remember to change into the PHP file too
-    
-    private Rect textrect = new Rect (10, 150, 500, 500); //just make a GUI object rectangle
+    public void HandleLogin() {
 
- 
-    void Login() {
-        var form = new WWWForm(); //here you create a new form connection
-        form.AddField( "myform_hash", hash ); //add your hash code to the field myform_hash, check that this variable name is the same as in PHP file
-        form.AddField( "myform_nick", formNick );
-        form.AddField( "myform_pass", formPassword );
-        var w = WWW(URL, form); //here we create a var called 'w' and we sync with our URL and the form
-        yield w; //we wait for the form to check the PHP file, so our game dont just hang
-        if (w.error != null) {
-            print(w.error); //if there is an error, tell us
-        } else {
-            print("Test ok");
-            formText = w.data; //here we return the data our PHP told us
-            w.Dispose(); //clear our form in game
-        }
-    
-        formNick = ""; //just clean our variables
-        formPassword = "";
-}
- 
+        string url = "http://gljf.learnictnow.com/login_check.php";
+        url = url + "?u=" + usernameBox.text;
+        url = url + "&p=" + passwordBox.text;
+
+        StartCoroutine(GetRequest(url));
+
+        
+    }
 }

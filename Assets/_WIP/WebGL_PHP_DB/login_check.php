@@ -1,39 +1,43 @@
 <?php
 // CONNECTIONS =========================================================
-$host = "localhost"; //put your host here
+$host = "sql354.main-hosting.eu"; //put your host here
 $user = "u630397682_gljf"; //in general is root
 $password = "Cbhs1881"; //use your password here
 $dbname = "u630397682_gljf"; //your database
 
-//$conn = new mysqli($host, $user, $password);
 
-//mysql_connect($host, $user, $password) or die("Cant connect into database");
-//mysql_select_db($dbname)or die("Cant connect into database");
-// =============================================================================
-// PROTECT AGAINST SQL INJECTION and CONVERT PASSWORD INTO MD5 formats
+$conn = new mysqli($host, $user, $password, $dbname);
 
-try 
-{
-	$dbh = new PDO('mysql:host='. $host .';dbname='. $dbname, 
-         $user, $password);
-} 
-catch(PDOException $e) 
-{
-	echo '<h1>An error has occurred.</h1><pre>', $e->getMessage()
-            ,'</pre>';
-}
- 
-$sth = $dbh->query('SELECT * FROM scores ORDER BY score DESC LIMIT 5');
-$sth->setFetchMode(PDO::FETCH_ASSOC);
- 
-$result = $sth->fetchAll();
- 
-if (count($result) > 0) 
-{
-	foreach($result as $r) 
-	{
-		echo $r['name'], "\n _";
-		echo $r['score'], "\n _";
+if ($conn->connect_error) {
+	die("Connection failed: " . $conn->connect_error);
+ }
+ //echo "<h1>Connected successfully</h1>";
+
+$login_username = $_GET['u'];
+$login_password = $_GET['p'];
+
+/*
+$login_username = "testuser";
+$login_password = "1234";
+*/
+$login_pw_hash = md5($login_password);
+ $sql = "SELECT * FROM scores WHERE name ='" . $login_username ."' AND password='". $login_pw_hash . "'";
+// echo $sql;
+$result = $conn->query($sql);
+//$result = mysqli_query($conn, $sql);
+//echo "<br>";
+//echo $result . "<br>";
+
+if ($result->num_rows > 0) {
+	// output data of each row
+	while($row = $result->fetch_assoc()) {
+	  echo "SUCCESS";
 	}
-}
+ } else {
+	echo "FAIL";
+ }
+
+ //echo "<h3>end</h3>";
+
+ $conn->close();
 ?>
