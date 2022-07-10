@@ -101,7 +101,7 @@ public partial class @MouseControlsPointAndClick : IInputActionCollection2, IDis
                 {
                     ""name"": """",
                     ""id"": ""aecd967b-87b9-4ec3-ad62-445062300b8e"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
