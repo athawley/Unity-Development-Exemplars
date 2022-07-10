@@ -97,9 +97,9 @@ public class PanAndZoomCameraControl : MonoBehaviour
         // 19. Get the camera lens field of view
         float fieldOfView = _virtualCamera.m_Lens.FieldOfView;
         // 20. Update the field of view to the new z position and adjust by the _zoomSpeed
-        _virtualCamera.m_Lens.FieldOfView = fieldOfView = Mathf.Lerp(fieldOfView,
-                                                                    fieldOfView + z,
-                                                                    _zoomSpeed * Time.deltaTime
-                                                                    );
+        _virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(fieldOfView,
+                                                        fieldOfView + z,
+                                                        _zoomSpeed * Time.deltaTime
+                                                        );
     }
 }

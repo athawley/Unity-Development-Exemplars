@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_WIP/RTSMapScroll/RTSMapScroll.unity
-    guid: f718df9451f702d48b4b8e5e03c1ecd9
+    path: Assets/_CurrentReleaseExampleCode/CustomCursorsPanScan/CustomCursorsUsingRTSMapScroll.unity
+    guid: fef9b2a573d27234a88edc914804ec19
   m_configObjects: {}
