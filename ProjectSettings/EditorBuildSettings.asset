@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_CurrentReleaseExampleCode/SelectItemUI/DynamicSelectItemUI.unity
-    guid: d3ba2f2535ed5254e9cea1cdd107731f
+    path: Assets/_CurrentReleaseExampleCode/EnemySpawnPoint/EnemySpawnPoint.unity
+    guid: 78fe72be652dd7047a4bea265c1c38ee
   m_configObjects: {}
