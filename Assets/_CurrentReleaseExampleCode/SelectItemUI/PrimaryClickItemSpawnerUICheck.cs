@@ -15,9 +15,8 @@ public class PrimaryClickItemSpawnerUICheck : MonoBehaviour
 
     // 5. Currently selected prefab from list. Only default in this example
     public int selectedPrefab = 0;
-    
-    public float maxRayDistance = 300;
-
+   
+    // 28. Layermask to ignore the UI being clicked on (UI is layer 5 by default)
     public LayerMask ignoreLayerMask;
 
     // Start is called before the first frame update
@@ -57,6 +56,8 @@ public class PrimaryClickItemSpawnerUICheck : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             // 18. We are here because the raycast hit something Check if hit UI
+
+            // 29. Check if the 
             if(hit.collider.gameObject.layer != ignoreLayerMask.value) {
 
                 /* 19.
@@ -112,4 +113,5 @@ public class PrimaryClickItemSpawnerUICheck : MonoBehaviour
     void SecondaryCancelled(InputAction.CallbackContext context) {
                 
     }
+
 }
