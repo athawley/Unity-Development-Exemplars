@@ -363,3 +363,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnPoint: {fileID: 3707187893171548344}
+  EnemyToSpawn: {fileID: 0}
+  Target: {fileID: 0}
+  spawnDelay: 2

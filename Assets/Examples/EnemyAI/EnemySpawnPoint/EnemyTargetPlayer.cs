@@ -23,7 +23,5 @@ public class EnemyTargetPlayer : MonoBehaviour
     {
         // 5. Every frame update the targetPosition of the agent (in case it moves)
         agent.SetDestination(targetPosition.position);
-    }
-
-    
+    }   
 }
