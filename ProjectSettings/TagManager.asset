@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Projectile
   - WayPoint
+  - Lava
   layers:
   - Default
   - TransparentFX

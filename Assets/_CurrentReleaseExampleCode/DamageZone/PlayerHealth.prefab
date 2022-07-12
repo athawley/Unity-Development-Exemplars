@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 584442508943574973}
   - component: {fileID: 1265494997251604543}
   - component: {fileID: 6238353487690883723}
+  - component: {fileID: 8067550143030998516}
   m_Layer: 0
   m_Name: PlayerHealth
   m_TagString: Player
@@ -209,6 +210,18 @@ MonoBehaviour:
   armour: 50
   maxArmour: 100
   name: Pete the Player
+--- !u!114 &8067550143030998516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4365010867922827086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee13979aa75c23f4688222abf0166952, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5721458248821541862
 GameObject:
   m_ObjectHideFlags: 0

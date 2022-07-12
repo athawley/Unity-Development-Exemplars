@@ -405,21 +405,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHealth
       objectReference: {fileID: 0}
+    - target: {fileID: 4365010867922827086, guid: 193bee9846b62df42896e47a5dac15c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6757731606300679672, guid: 193bee9846b62df42896e47a5dac15c7, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6757731606300679672, guid: 193bee9846b62df42896e47a5dac15c7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 8.69
       objectReference: {fileID: 0}
     - target: {fileID: 6757731606300679672, guid: 193bee9846b62df42896e47a5dac15c7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6757731606300679672, guid: 193bee9846b62df42896e47a5dac15c7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: -2.43
       objectReference: {fileID: 0}
     - target: {fileID: 6757731606300679672, guid: 193bee9846b62df42896e47a5dac15c7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -464,7 +468,7 @@ GameObject:
   - component: {fileID: 1659095446}
   m_Layer: 0
   m_Name: DamageZone
-  m_TagString: Untagged
+  m_TagString: Lava
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

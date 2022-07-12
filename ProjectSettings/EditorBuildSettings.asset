@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Examples/EnemyAI/EnemySpawnPoint/EnemySpawnPoint.unity
-    guid: 78fe72be652dd7047a4bea265c1c38ee
+    path: Assets/_CurrentReleaseExampleCode/DamageZone/DamageZone.unity
+    guid: fc4dfbb0d91c12740ae42267e8464950
   m_configObjects: {}
