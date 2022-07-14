@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_CurrentReleaseExampleCode/LaserTower/LaserRayCastTower.unity
+    path: Assets/Examples/InteractingWithOtherObjects/LaserTower/LaserRayCastTower.unity
     guid: 8794864449724ba44894ceaa0e269718
   m_configObjects: {}
