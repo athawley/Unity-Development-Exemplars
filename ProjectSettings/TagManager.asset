@@ -19,7 +19,7 @@ TagManager:
   - Detectable
   - Obstacle
   - Opponent
-  - 
+  - Damageable
   - 
   - P1
   - P2
