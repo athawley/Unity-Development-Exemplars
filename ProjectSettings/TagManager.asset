@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - WayPoint
   - Lava
+  - Ball
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,19 @@
+# Made using Asset Forge (2.2.0)
+
+:materials
+
+[name:metal;color:RGBA(0.580, 0.569, 0.769, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0.25;]
+[name:wood;color:RGBA(0.840, 0.435, 0.305, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0;]
+[name:woodDark;color:RGBA(0.698, 0.316, 0.194, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0;]
+[name:_defaultMat;color:RGBA(0.939, 0.953, 1.000, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0.25;]
+
+:models
+
+[name:;collection:Fences;type:fence_classicRound%;position:(11.0000, 0.0000, -1.0000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:woodDark+wood;]
+[name:;collection:Fences;type:fence_classicRound%;position:(10.0000, 0.0000, 0.0000);rotation:(0.0000, 270.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:woodDark+wood;]
+[name:;collection:Fences;type:fence_classicRound%;position:(10.0000, 0.0000, -1.0000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:woodDark+wood;]
+[name:;collection:Fences;type:fence_classicRound%;position:(11.0000, 0.0000, 0.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:woodDark+wood;]
+[name:;collection:Fences;type:fence_classicRound%;position:(9.0000, 0.0000, -2.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:woodDark+wood;]
+[name:;collection:Fences;type:fence_classicRound%;position:(12.0000, 0.0000, 1.0000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:woodDark+wood;]
+[name:;collection:Fences;type:fence_classicRound%;position:(12.0000, 0.0000, -2.0000);rotation:(0.0000, 270.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:woodDark+wood;]
+[name:;collection:Fences;type:fence_classicRound%;position:(9.0000, 0.0000, 1.0000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:woodDark+wood;]
