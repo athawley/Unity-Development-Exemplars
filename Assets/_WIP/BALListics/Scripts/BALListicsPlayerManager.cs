@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class BALListicsPlayerManager : MonoBehaviour
 {
+
     CharacterController _cc;
     [SerializeField]
     float _speed = 5.0f;
@@ -19,17 +20,24 @@ public class BALListicsPlayerManager : MonoBehaviour
 
     public string team;
 
+    PlayerInput pi;
+
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
+        pi = GetComponent<PlayerInput>();
+        playerIDText.text = "P" + (pi.playerIndex+1);
         team = "None";
         _cc = GetComponent<CharacterController>();
 
-        this.transform.position = spawnPoint.position;
-
-        playerIDText.text = "P1";
-        BALListicsGameManager.Instance.players.Add(this.gameObject);
+        this.gameObject.SetActive(false);
+        transform.position = spawnPoint.position;
+        this.gameObject.SetActive(true);
+       
+        BALListicsGameManager.players.Add(this.gameObject);
     }
+
 
     // Update is called once per frame
     void Update()
@@ -59,5 +67,11 @@ public class BALListicsPlayerManager : MonoBehaviour
                 r.material.color=Color.white;
             }
     	}
+    }
+
+    public void RespawnPlayer() {
+        this.gameObject.SetActive(false);
+        transform.position = spawnPoint.position;
+        this.gameObject.SetActive(true);
     }
 }

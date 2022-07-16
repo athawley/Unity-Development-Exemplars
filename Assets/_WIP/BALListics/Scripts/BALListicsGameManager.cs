@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class BALListicsGameManager : MonoBehaviour
 {
+    public PlayerInputManager pim;
     public static BALListicsGameManager Instance { get; private set; }
     public int matchLengthSeconds = 90;
     public int redScore = 0;
@@ -15,10 +17,19 @@ public class BALListicsGameManager : MonoBehaviour
     public Text redScoreText;
     public Text blueScoreText;
 
-    public List<GameObject> players = new List<GameObject>();
+    public static List<GameObject> players = new List<GameObject>();
+    //public List<Transform> spawnLocations = new List<Transform>();
+    
+
+    void Start() {
+        
+        matchLengthSeconds = UIManager.Instance.gameLength;
+        
+    }
 
     private void Awake() 
     { 
+        
         // If there is an instance, and it's not me, delete myself.
         
         if (Instance != null && Instance != this) 
@@ -44,7 +55,13 @@ public class BALListicsGameManager : MonoBehaviour
             time = time - 1;
             minutes = time / 60;
             seconds = time % 60;
-            timerText.text = minutes + ":" + seconds;
+            string tmp = minutes + ":";
+            if(seconds < 10) {
+                tmp = tmp + "0" + seconds;
+            } else {
+                tmp = tmp + seconds;
+            }
+            timerText.text = tmp;
         }
 
         // Stop game
@@ -62,12 +79,6 @@ public class BALListicsGameManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void SetupGame() {
         blueScoreText.text = "" + blueScore;
         redScoreText.text = "" + redScore;
@@ -79,6 +90,27 @@ public class BALListicsGameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SpawnPlayers(List<Transform> locations) {
+        Debug.Log("Attempting spawn all");
+        //int spawnPointIndex = Random.Range (0, locations.Count);
+
+        //PlayerInputManager
+        
+        foreach(GameObject p in BALListicsGameManager.players) {
+            Debug.Log("Attempting spawn");
+            int spawnPointIndex = Random.Range (0, locations.Count);
+            p.GetComponent<BALListicsPlayerManager>().spawnPoint = locations[spawnPointIndex];
+            p.GetComponent<BALListicsPlayerManager>().RespawnPlayer();
+        }
+    }
+
+    public void RespawnItem(GameObject go) {
+        int index = Random.Range(0,this.GetComponent<ArenaStart>().spawnLocations.Count);
+        go.SetActive(false);
+        go.transform.position = this.GetComponent<ArenaStart>().spawnLocations[index].transform.position;
+        go.SetActive(true);
     }
 
     public void CheckReady() {

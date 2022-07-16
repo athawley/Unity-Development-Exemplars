@@ -85,6 +85,7 @@ public class UIManager : MonoBehaviour
             tmp = tmp + seconds;
         }
         gamLengthText.text = tmp;
+        //BALListicsGameManager.Instance.matchLengthSeconds = gameLength;
     }
 
     public void Quit() {

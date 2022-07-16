@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667555, g: 0.48427176, b: 0.56452405, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -157,8 +157,8 @@ Transform:
   m_Children:
   - {fileID: 615780048}
   - {fileID: 1318800934}
-  - {fileID: 47460739}
   - {fileID: 979202221}
+  - {fileID: 47460739}
   - {fileID: 1790582658}
   - {fileID: 503028496}
   - {fileID: 343480245}
@@ -1045,13 +1045,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793161014}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.6830127, y: -0.18301266, z: 0.18301266, w: 0.6830127}
+  m_LocalPosition: {x: 0, y: 37.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -30, z: 0}
 --- !u!1 &865810836
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,7 +1175,7 @@ Transform:
   m_LocalScale: {x: 1, y: 5, z: 10}
   m_Children: []
   m_Father: {fileID: 99524421}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1031824554
 GameObject:
@@ -1201,7 +1201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031824554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -2.5}
+  m_LocalPosition: {x: 0, y: 2, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 425374605}
@@ -1322,6 +1322,7 @@ GameObject:
   - component: {fileID: 1347248240}
   - component: {fileID: 1347248239}
   - component: {fileID: 1347248241}
+  - component: {fileID: 1347248242}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1399,6 +1400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899fa33bbdd8ccb488a68ede73ca52d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pim: {fileID: 1347248239}
   matchLengthSeconds: 90
   redScore: 0
   blueScore: 0
@@ -1406,6 +1408,23 @@ MonoBehaviour:
   timerText: {fileID: 0}
   redScoreText: {fileID: 0}
   blueScoreText: {fileID: 0}
+--- !u!114 &1347248242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347248238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a88ba68701d2a458a55258acd9505e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnLocations:
+  - {fileID: 425374605}
+  - {fileID: 865810837}
+  - {fileID: 1765543473}
+  - {fileID: 319785720}
 --- !u!1 &1366888671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,10 +1668,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4890458885399864411, guid: 991a4d3ebeaea2549a52b8663144b83d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6674217547732175353, guid: 991a4d3ebeaea2549a52b8663144b83d, type: 3}
       propertyPath: spawnPoint
       value: 
-      objectReference: {fileID: 425374605}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 991a4d3ebeaea2549a52b8663144b83d, type: 3}
 --- !u!1001 &1744601743

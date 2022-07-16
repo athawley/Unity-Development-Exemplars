@@ -6,10 +6,13 @@ public class ScoreGoal : MonoBehaviour
 {
     [SerializeField]
     string team;
+
+    public GameObject game;
     
     void OnTriggerEnter(Collider col) {
         if(col.CompareTag("Ball")) {
-            col.gameObject.transform.position = Vector3.zero;
+            Destroy(col.gameObject);
+            game.GetComponent<ArenaStart>().SpawnBall();
             BALListicsGameManager.Instance.scoreTeam(team);
         }
     }
