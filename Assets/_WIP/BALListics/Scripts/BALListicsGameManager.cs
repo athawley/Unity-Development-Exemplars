@@ -15,19 +15,21 @@ public class BALListicsGameManager : MonoBehaviour
     public Text redScoreText;
     public Text blueScoreText;
 
+    public List<GameObject> players = new List<GameObject>();
+
     private void Awake() 
-{ 
-    // If there is an instance, and it's not me, delete myself.
-    
-    if (Instance != null && Instance != this) 
     { 
-        Destroy(this); 
-    } 
-    else 
-    { 
-        Instance = this; 
-    } 
-}
+        // If there is an instance, and it's not me, delete myself.
+        
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
+    }
 
     IEnumerator gameTimer;
 
@@ -63,6 +65,10 @@ public class BALListicsGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    public void SetupGame() {
         blueScoreText.text = "" + blueScore;
         redScoreText.text = "" + redScore;
         gameTimer = playGame(matchLengthSeconds);
@@ -73,5 +79,18 @@ public class BALListicsGameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void CheckReady() {
+        // If all players have a team set to red or blue play the game.
+        bool play = true;
+        foreach(GameObject p in players) {
+            if(p.GetComponent<BALListicsPlayerManager>().team == "None") {
+                play =  false;
+            }
+        }
+        if(play) {
+            UIManager.Instance.LoadScene("Arena");
+        }
     }
 }

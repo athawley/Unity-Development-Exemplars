@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_CurrentReleaseExampleCode/FireProjectileRigidbody/FirstProjectile.unity
-    guid: f2fea2f6560ce75408438bb4212fb1f1
+    path: Assets/_WIP/BALListics/MainMenu.unity
+    guid: 3d5bd6f01a7cb044d982cb80065f11a0
+  - enabled: 1
+    path: Assets/_WIP/BALListics/LobbyScene.unity
+    guid: e9aa9aace645e9e43bc7567d1bfbb3bf
+  - enabled: 1
+    path: Assets/_WIP/BALListics/Arena.unity
+    guid: 6b37ab914ce0dc045b10db16d3f0cbd9
   m_configObjects: {}
