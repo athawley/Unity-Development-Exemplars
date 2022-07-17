@@ -22,7 +22,7 @@ public class BALListicsGameManager : MonoBehaviour
     
 
     void Start() {
-        
+        //DontDestroyOnLoad(this.gameObject);
         matchLengthSeconds = UIManager.Instance.gameLength;
         
     }
@@ -50,7 +50,7 @@ public class BALListicsGameManager : MonoBehaviour
         seconds = matchLengthSeconds % 60;
         timerText.text = minutes + ":" + seconds;
 
-        while(time >= 0) {
+        while(time > 0) {
             yield return new WaitForSeconds(1);
             time = time - 1;
             minutes = time / 60;
@@ -66,6 +66,18 @@ public class BALListicsGameManager : MonoBehaviour
 
         // Stop game
         StopCoroutine(gameTimer);
+
+        Time.timeScale = 0;
+        string result = "";
+        if(redScore > blueScore) {
+            result = "Red wins!";
+        } else if(blueScore > redScore) {
+            result = "Blue wins!";
+        } else {
+            result = "Match drawn";
+        }
+        string score = redScore + " : " + blueScore;
+        UIManager.Instance.DisplayResult(result, score);
     }
 
     public void scoreTeam(string t) {

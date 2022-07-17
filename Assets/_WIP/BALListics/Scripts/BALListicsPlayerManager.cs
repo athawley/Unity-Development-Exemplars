@@ -74,4 +74,8 @@ public class BALListicsPlayerManager : MonoBehaviour
         transform.position = spawnPoint.position;
         this.gameObject.SetActive(true);
     }
+
+    void OnPause() {
+        UIManager.Instance.PauseGame();
+    }
 }

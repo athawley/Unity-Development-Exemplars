@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake() 
     { 
+        DontDestroyOnLoad(this.gameObject);
         // If there is an instance, and it's not me, delete myself.
         
         if (Instance != null && Instance != this) 
@@ -31,7 +32,7 @@ public class UIManager : MonoBehaviour
     public Text gamLengthText;
 
     // Canvases
-    public Canvas mainMenu, pauseMenu, aboutMenu;
+    public Canvas mainMenu, pauseMenu, aboutMenu, resultMenu;
 
     public EventSystem eventSystem;
     
@@ -42,17 +43,11 @@ public class UIManager : MonoBehaviour
         ChangeGameLength();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void LoadScene(string scene) {
         SceneManager.LoadSceneAsync(scene);
     }
 
-    public void PauseGame(Button active) {
+    public void PauseGame() {
         pauseMenu.gameObject.SetActive(true);
         Debug.Log("Pause pressed");
         gamePaused = true;
@@ -67,11 +62,22 @@ public class UIManager : MonoBehaviour
         mainMenu.gameObject.SetActive(false);
     }
 
-    public void MainMenu(Button active) {
+    public void DisplayResult(string result, string score) {
+        resultMenu.GetComponent<ResultUpdate>().result.text = result;
+        resultMenu.GetComponent<ResultUpdate>().score.text = score;
+        resultMenu.gameObject.SetActive(true);
+    }
+
+    public void MainMenu() {
+        /*
         aboutMenu.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(null);
-        eventSystem.SetSelectedGameObject(active.gameObject);
+        eventSystem.SetSelectedGameObject(active.gameObject);*/
+        pauseMenu.gameObject.SetActive(false);
+        aboutMenu.gameObject.SetActive(false);
+        resultMenu.gameObject.SetActive(false);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ChangeGameLength() {

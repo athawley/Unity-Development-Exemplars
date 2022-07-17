@@ -17,6 +17,8 @@ public class ArenaStart : MonoBehaviour
         SpawnBall();
     }
 
+    
+
     public void SpawnBall() {
         int spawnPointIndex = Random.Range (0, spawnLocations.Count);
         gameBall = Instantiate(ballPrefab, spawnLocations[spawnPointIndex].position, spawnLocations[spawnPointIndex].rotation);
