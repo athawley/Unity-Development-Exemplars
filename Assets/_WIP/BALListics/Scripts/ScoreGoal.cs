@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScoreGoal : MonoBehaviour
 {
     [SerializeField]
-    string team;
+    string pointsToTeam;
 
     public GameObject game;
     
@@ -13,7 +13,7 @@ public class ScoreGoal : MonoBehaviour
         if(col.CompareTag("Ball")) {
             Destroy(col.gameObject);
             game.GetComponent<ArenaStart>().SpawnBall();
-            BALListicsGameManager.Instance.scoreTeam(team);
+            BALListicsGameManager.Instance.scoreTeam(pointsToTeam);
         }
     }
 }
