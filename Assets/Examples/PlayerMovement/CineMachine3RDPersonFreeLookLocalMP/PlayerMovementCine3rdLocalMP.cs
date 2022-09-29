@@ -38,6 +38,7 @@ public class PlayerMovementCine3rdLocalMP : MonoBehaviour
             float targetAngle = Mathf.Atan2(tempMove.x, tempMove.z) * Mathf.Rad2Deg + _mainCameraTransform.eulerAngles.y;
             float turnAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, TurnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, turnAngle, 0f);
+            //transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             _cc.Move(moveDir.normalized * Speed * Time.deltaTime);
       }
